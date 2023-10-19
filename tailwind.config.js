@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
@@ -23,9 +24,15 @@ module.exports = {
             "warning": "#fbbd23",
             "error": "#f87272",
           },
+<<<<<<< Updated upstream
         }, "light","dracula",
       ],// true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: "dracula", // name of one of the included themes for dark mode
+=======
+        }, "light", "dracula",
+      ],// true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
+    darkTheme: "mytheme", // name of one of the included themes for dark mode
+>>>>>>> Stashed changes
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
