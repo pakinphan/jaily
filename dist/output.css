@@ -481,7 +481,6 @@ html {
   --er: 0 91% 71%;
 }
 
-<<<<<<< Updated upstream
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
@@ -522,8 +521,6 @@ html {
   }
 }
 
-=======
->>>>>>> Stashed changes
 [data-theme=mytheme] {
   --p: 337 44% 72%;
   --pf: 337 44% 65%;
@@ -1399,21 +1396,8 @@ html {
   margin-right: auto;
 }
 
-<<<<<<< Updated upstream
 .-mr-1 {
   margin-right: -0.25rem;
-=======
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
-.ml-4 {
-  margin-left: 1rem;
->>>>>>> Stashed changes
 }
 
 .mb-4 {
@@ -1426,6 +1410,10 @@ html {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
 }
 
 .ml-4 {
@@ -1444,7 +1432,6 @@ html {
   margin-right: auto;
 }
 
-<<<<<<< Updated upstream
 .mt-16 {
   margin-top: 4rem;
 }
@@ -1453,8 +1440,6 @@ html {
   margin-top: 1rem;
 }
 
-=======
->>>>>>> Stashed changes
 .block {
   display: block;
 }
@@ -1479,6 +1464,10 @@ html {
   height: 2.5rem;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
 .h-4 {
   height: 1rem;
 }
@@ -1487,13 +1476,10 @@ html {
   height: 1.25rem;
 }
 
-<<<<<<< Updated upstream
-=======
 .h-6 {
   height: 1.5rem;
 }
 
->>>>>>> Stashed changes
 .h-8 {
   height: 2rem;
 }
@@ -1502,29 +1488,24 @@ html {
   width: 2.5rem;
 }
 
-.w-4 {
-  width: 1rem;
+.w-3 {
+  width: 0.75rem;
 }
 
 .w-5 {
   width: 1.25rem;
 }
 
-<<<<<<< Updated upstream
-.w-full {
-  width: 100%;
-}
-
-.max-w-2xl {
-  max-width: 42rem;
-=======
 .w-6 {
   width: 1.5rem;
 }
 
 .w-full {
   width: 100%;
->>>>>>> Stashed changes
+}
+
+.max-w-2xl {
+  max-width: 42rem;
 }
 
 .max-w-screen-xl {
@@ -1610,15 +1591,14 @@ html {
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
-<<<<<<< Updated upstream
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-=======
+}
+
 .bg-gray-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
->>>>>>> Stashed changes
 }
 
 .bg-gray-50 {
@@ -1730,14 +1710,11 @@ html {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
-<<<<<<< Updated upstream
-=======
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
->>>>>>> Stashed changes
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -1866,22 +1843,6 @@ html {
   background-color: hsl(var(--p) / var(--tw-bg-opacity));
 }
 
-<<<<<<< Updated upstream
-  .dark\:focus\:ring-gray-800:focus {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgb(31 41 55 / var(--tw-ring-opacity));
-  }
-
-  .dark\:focus\:ring-primary:focus {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: hsl(var(--p) / var(--tw-ring-opacity));
-  }
-=======
-:is(.dark .dark\:hover\:text-secondary:hover) {
-  --tw-text-opacity: 1;
-  color: hsl(var(--s) / var(--tw-text-opacity));
-}
-
 :is(.dark .dark\:hover\:text-white:hover) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1892,128 +1853,31 @@ html {
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
 }
 
+:is(.dark .dark\:focus\:ring-gray-800:focus) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(31 41 55 / var(--tw-ring-opacity));
+}
+
 :is(.dark .dark\:focus\:ring-primary:focus) {
   --tw-ring-opacity: 1;
   --tw-ring-color: hsl(var(--p) / var(--tw-ring-opacity));
->>>>>>> Stashed changes
 }
+
 @media (max-width: 767px) {
-  .sm\:order-1 {
-    order: 1;
-  }
-
-  .sm\:order-2 {
-    order: 2;
-  }
-  .sm\:h-4 {
-    height: 1rem;
-  }
-  .sm\:w-4 {
-width: 1rem;
-  }
-
-  .sm\:mr-0 {
-    margin-right: 0px;
-  }
-
   .sm\:ml-0 {
     margin-left: 0px;
-  }
-
-  .sm\:mr-1 {
-    margin-right: 2px;
-  }
-
-  .sm\:mt-0 {
-    margin-top: 0px;
-  }
-
-  .sm\:mt-16 {
-    margin-top: 4rem;
-  }
-
-  .sm\:flex {
-    display: flex;
   }
 
   .sm\:hidden {
     display: none;
   }
 
-  .sm\:w-auto {
-    width: auto;
+  .sm\:h-4 {
+    height: 1rem;
   }
 
-  .sm\:flex-row {
-    flex-direction: row;
-  }
-
-  .sm\:space-x-8 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(2rem * var(--tw-space-x-reverse));
-    margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .sm\:border-0 {
-    border-width: 0px;
-  }
-
-  .sm\:bg-transparent {
-    background-color: transparent;
-  }
-
-  .sm\:bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  }
-
-  .sm\:p-0 {
-    padding: 0px;
-  }
-
-  .sm\:text-8xl {
-    font-size: 6rem;
-    line-height: 1;
-  }
-
-  .sm\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .sm\:text-primary {
-    --tw-text-opacity: 1;
-    color: hsl(var(--p) / var(--tw-text-opacity));
-  }
-
-  .sm\:hover\:bg-transparent:hover {
-    background-color: transparent;
-  }
-
-  .sm\:hover\:text-primary:hover {
-    --tw-text-opacity: 1;
-    color: hsl(var(--p) / var(--tw-text-opacity));
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .sm\:dark\:bg-gray-900 {
-      --tw-bg-opacity: 1;
-      background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-    }
-
-    .sm\:dark\:text-primary {
-      --tw-text-opacity: 1;
-      color: hsl(var(--p) / var(--tw-text-opacity));
-    }
-
-    .sm\:dark\:hover\:bg-transparent:hover {
-      background-color: transparent;
-    }
-
-    .sm\:dark\:hover\:text-secondary:hover {
-      --tw-text-opacity: 1;
-      color: hsl(var(--s) / var(--tw-text-opacity));
-    }
+  .sm\:w-4 {
+    width: 1rem;
   }
 }
 
@@ -2028,9 +1892,6 @@ width: 1rem;
 
   .md\:mr-0 {
     margin-right: 0px;
-  }
-  .md\:ml-0 {
-    margin-left: 0px;
   }
 
   .md\:mt-0 {
@@ -2118,16 +1979,9 @@ width: 1rem;
     background-color: transparent;
   }
 
-<<<<<<< Updated upstream
-    .md\:dark\:hover\:text-secondary:hover {
-      --tw-text-opacity: 1;
-      color: hsl(var(--s) / var(--tw-text-opacity));
-    }
-=======
   :is(.dark .md\:dark\:hover\:text-secondary:hover) {
     --tw-text-opacity: 1;
     color: hsl(var(--s) / var(--tw-text-opacity));
->>>>>>> Stashed changes
   }
 }
 
