@@ -7,3 +7,25 @@
       font-family: "Kanit", system-ui, sans-serif;
     }
   }
+
+  @media (max-width: 767px) {
+    .sm1\:ml-0 {
+      margin-left: 0px;
+    }
+  
+    .sm1\:hidden {
+      display: none;
+    }
+  
+    .sm1\:h-4 {
+      height: 1rem;
+    }
+  
+    .sm1\:w-4 {
+      width: 1rem;
+    }
+  }
+
+  .fill-current1 {
+    fill: #fff;
+  }
