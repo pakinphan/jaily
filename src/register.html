@@ -87,33 +87,67 @@
 
     <!-- navbar end -->
 
-        <!-- login -->
-<div style="padding-top: 200px;">
-        <div class="title text-2xl font-bold mb-4">Login</div>
-        
-        <div class="container mt-5 mx-auto p-10">
-          <form id="loginForm" action="login.php" method="POST">
-              <div class="mb-4">
-                  <label for="username" class="block text-sm font-medium text-gray-600">Username (E-mail):</label>
-        
-                  <input type="email" id="username" name="username" class="mt-1 p-2 w-64 border rounded-md" required>
-              </div>
-              <div class="mb-4">
-                  <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
-                  <input type="password" id="password" name="password" class="mt-1 p-2 w-64 border rounded-md" required>
-              </div>
-              <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
-          </form>
-        </div>
-        
-        <div class="mt-4 text-center">
-            <p class="text-sm">Not a member? <a href="register.html" class="text-blue-500">Register</a></p>
-        </div>
+    <div style="padding-top: 200px;">
+    <div class="title text-2xl font-bold mb-4">Register</div>
+    <div class="container mt-5 mx-auto p-10">
+        <form id="registrationForm" action="processform.php" method="POST">
+            <div class="flex justify-center mb-4">
+                <div class="mr-10">
+                    <label for="email" class="block text-sm font-medium text-gray-600">E-mail:</label>
+                    <input type="email" id="email" name="username" class="mt-1 p-2 border rounded-md" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
+                    <input type="password" id="password" name="password" class="mt-1 p-2 border rounded-md" minlength="8" maxlength="25" required>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="repassword" class="block text-sm font-medium text-gray-600">Re-Password:</label>
+                <input type="password" id="repassword" name="repassword" class="mt-1 p-2 border rounded-md" minlength="8" maxlength="25" required>
+                <p id="passwordMatchMessage" class="text-red-500"></p>
+            </div>
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-600">Username:</label>
+                <input type="username" id="username" name="username" class="mt-1 p-2 border rounded-md" minlength="8" maxlength="25" required>
+                <p id="passwordMatchMessage" class="text-red-500"></p>
+            </div>
+            <div class="mb-4">
+                <label for="birthday" class="block text-sm font-medium text-gray-600">Birthday:</label>
+                <div class="flex">
+                    <select id="birthdayDay" name="birthdayDay" class="mt-1 p-2 border rounded-md mr-2" required>
+                        <option value="">Day</option>
+                        <!-- Add day options via JavaScript -->
+                    </select>
+                    <select id="birthdayMonth" name="birthdayMonth" class="mt-1 p-2 border rounded-md mr-2" required>
+                        <option value="">Month</option>
+                    </select>
+                    <select id="birthdayYear" name="birthdayYear" class="mt-1 p-2 border rounded-md" required>
+                        <option value="">Year</option>
+                        <!-- Add year options via JavaScript -->
+                    </select>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="countryCode" class="block text-sm font-medium text-gray-600">Country Code:</label>
+                <select id="countryCode" name="countryCode" class="mt-1 p-2 border rounded-md" required>
+                    <option value="+66">+66 (Thailand)</option>
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <!-- Add more country codes as needed -->
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="mobile" class="block text-sm font-medium text-gray-600">Mobile Number (9 digits):</label>
+                <input type="text" id="mobile" name="mobile" class="mt-1 p-2 border rounded-md" pattern="[0-9]{9}" required>
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register</button>
+        </form>
     </div>
+</div>
         
 
 </body>
 
-<!-- login page -->
+<!-- register page -->
 
 </html>
