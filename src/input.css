@@ -4,8 +4,19 @@
 
 @layer base {
     html {
-      font-family: "Kanit", system-ui, sans-serif;
+      font-family: "Kanit", system-ui, sans-serif ,;
     }
+  }
+
+  @font-face {
+    font-family: 'Kdam Thmor Pro';
+    src: url('.assets\fonts\KdamThmorPro-Regular.ttf') format('truetype'); /* Adjust the path based on your project structure */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .font-kdam{
+    font-family: 'Kdam Thmor Pro', sans-serif;
   }
 
   @media (max-width: 767px) {

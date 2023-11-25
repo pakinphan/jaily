@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     extend: {
       kanit: ['Kanit', 'sans'],
+      kdamthmor: ['Kdam Thmor Pro', 'sans-serif'],
     },
   },
 
