@@ -3,16 +3,16 @@ var express = require("express");
 var session = require("express-session");
 var bodyParser = require("body-parser");
 var path = require("path");
-var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport'); 
-const bcrypt = require('bcryptjs');
+// var nodemailer = require('nodemailer');
+// var smtpTransport = require('nodemailer-smtp-transport'); 
+// const bcrypt = require('bcryptjs');
 //npm i express-session body-parser path nodemailer nodemailer-smtp-transport bcryptjs
 
 var connection = mysql2.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "jailydb",
+  database: "jaily_db",
 });
 
 const { response } = require("express");
