@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Extraction</title>
+    <link rel="stylesheet" href="../dist/output.css">
+    <link rel="stylesheet" href="./input.css">
+</head>
+
+<body>
+
+    <!-- modal start -->
+    <button class="btn" onclick="openModal()">Add LocatioN</button>
+    <div id="locationAddAlert"></div>
+    <dialog id="show_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Adding Location</h3>
+            <h5 class="font-bold text-lg">see how to add <a href="./howto.html">here</a></h5>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- modal content start -->
+
+                    <label for="inputLink">Enter a link:</label>
+                    <input type="text" id="inputLink" placeholder="https://maps.app.goo.gl/...">
+                    <button onclick="extractLink()">Add</button>
+
+                    <div id="result"></div>
+                    <script>
+                        function openModal() {
+                            const modal = document.getElementById('show_modal');
+                            modal.showModal();
+
+                            modal.addEventListener('close', function (event) {
+                                const locationAddAlert = document.getElementById('locationAddAlert');
+                                const resultElement = document.getElementById('result');
+
+                                if (event.target.returnValue === 'success') {
+                                    const extractedPart = resultElement.textContent; // Get the extracted part
+                                    locationAddAlert.textContent = `Added!`;
+                                } else {
+                                    locationAddAlert.textContent = ``;
+                                }
+                            });
+                        }
+
+                        function extractLink() {
+                            const inputElement = document.getElementById('inputLink');
+                            const link = inputElement.value.trim();
+                            const resultElement = document.getElementById('result');
+                            const modal = document.getElementById('show_modal');
+                            const urlFormat = /^https:\/\/maps\.app\.goo\.gl\/[a-zA-Z0-9]+$/;
+
+                            if (urlFormat.test(link)) {
+                                const extractedPart = link.replace("https://maps.app.goo.gl/", "");
+                                resultElement.textContent = ``;
+                                inputElement.value = '';
+                                modal.close('success');
+
+                                //********** jaily_db.contents content_place1 content_place2 มี 1-10 >>> ค่าอยู่ใน extractedPart
+                                //ตอนใช้ เขียน function add https://maps.app.goo.gl/ แล้วให้ new tab ไปดู
+
+                            } else {
+                                resultElement.textContent = `Try again! Wrong format.`;
+                                event.preventDefault();
+                                inputElement.value = '';
+                            }
+                        }
+
+                        function closeButton() {
+                            const resultElement = document.getElementById('result');
+                            resultElement.textContent = ``;
+                        }
+                    </script>
+
+                    <!-- modal content end -->
+                    <button class="btn" onclick="closeButton()">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+    <!-- modal end -->
+
+</body>
+
+</html>
