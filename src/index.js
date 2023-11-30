@@ -25,6 +25,10 @@ app.get('/register', (req, res) => {
 
     res.render('index');
   });
+  app.get('/write', (req, res) => {
+
+    res.render('write');
+  });
 
 
 app.set("views", path.join(__dirname, "views"));

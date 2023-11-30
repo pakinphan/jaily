@@ -6,7 +6,7 @@
     "tailwindcss": "^3.3.5"
   },
   "scripts": {
-    "build": "npx tailwindcss -i ./src/input.css -o ./assets/output.css --watch",
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "nodeinstall": "i bcrypt cookie-session express express-validator nodemon mysql2",
     "start": "nodemon src/index.js npx tailwindcss -i ./src/input.css -o ./assets/output.css --watch",
     "stop": "pkill -f nodemon"
