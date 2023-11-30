@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  tailwindcss: {},
+  autoprefixer: {},
   darkMode: 'class',
   content: ["./src/**/*.{html,js}"],
   theme: {

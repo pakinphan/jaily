@@ -38,7 +38,7 @@
                             <hr class="h-0 border-b border-solid border-grey-500 grow">
                         </div>
                         <label for="email1" class="mb-2 text-sm text-start text-grey-900">Email*</label>
-                        <input id="email1" type="email" placeholder="jinjuu@gmail.com" name="email"
+                        <input id="email1" type="email" placeholder="jinjuu@gmail.com" name="user_email"
                             class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
 
                         <div class="flex flex-row justify-between mb-8">
@@ -57,16 +57,16 @@
                     <form id="step2" class="hidden flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
                         <!-- Step 2 content -->
                         <label for="user" class="mb-2 text-sm text-start text-grey-900">Username</label>
-                        <input id="user" type="name" name="username" placeholder="jinjuu411"
+                        <input id="user" type="name" name="user_username" placeholder="jinjuu411"
                             class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
                         <label for="pass" class="mb-2 text-sm text-start text-grey-900">password</label>
-                        <input id="pass" type="password" name="password" placeholder="password"
+                        <input id="pass" type="password" name="user_password" placeholder="password"
                             class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
                         <label for="pass" class="mb-2 text-sm text-start text-grey-900">Re-Password</label>
                         <input id="repass" type="password" name="repassword" placeholder="re-password"
                             class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
                         <label for="email2" class="mb-2 text-sm text-start text-grey-900">Email</label>
-                        <input id="email2" type="email" placeholder="jinjuu@gmail.com" name="email" value=""
+                        <input id="email2" type="email" placeholder="jinjuu@gmail.com" name="user_email" value=""
                             class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
 
 
@@ -78,14 +78,14 @@
                     </form>
 
                     <!-- form 3 -->
-                    <form id="step3" class="hidden flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+                    <form action="/register" id="step3" class="hidden flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
                         <!-- Step 3 content -->
                         <label for="date" class="mb-2 text-sm text-start text-grey-900">Birthday</label>
 
-                        <input type="date" placeholder="Select a date"
+                        <input type="date" name="user_birthday" placeholder="Select a date"
                             class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
                         <label for="tel" class="mb-2 text-sm text-start text-grey-900">Phone number</label>
-                        <input id="tel" type="email" placeholder="phone number"
+                        <input id="tel" name="user_phonenumber" type="email" placeholder="phone number"
                             class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
                         <label class="relative inline-flex items-center mr-3 cursor-pointer select-none mb-8">
                             <input type="checkbox" checked value="" class="sr-only peer">

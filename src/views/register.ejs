@@ -1,53 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1024, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Webboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link href="/assets/output.css" rel="stylesheet">
+    <link href="/assets/input.css" rel="stylesheet">
+    <link href="/src/index.js" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/datepicker.min.js"></script>
+
+
 </head>
-<body>
-<div class="container">
-    <h1>register</h1>
-    <!-- กดปุ่ม add ไปที่ path /add-->
-    <form method="POST" action="/signup">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-            </div>
-            <input type="text" class="form-control" name="user_username" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1">
-        </div>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">#</span>
-            </div>
-            <input type="text" class="form-control" name="user_password" placeholder="Password" aria-label="Password"
-                aria-describedby="basic-addon1">
-        </div>
+<body class="bg-primary h-full py-5">
+    <div class="container flex flex-col mx-auto bg-white rounded-lg h-5/6 pt-12 my-5">
+        <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
+            <div class="flex items-center justify-center w-full lg:p-12">
+                <div class="flex flex-col items-center xl:p-10">
+                    <img src="/assets/images/icons/logo.png" class="w-10" alt="jaily">
 
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="user_email" placeholder="Recipient's email" aria-label="Recipient's email"
-                aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">@swu.ac.th</span>
+                    <!-- form 1 -->
+                    <form action="/register" method="post"
+                        class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+                        <!-- Step 1 content -->
+                        <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Create an Account</h3>
+                        <p class="mb-4 text-grey-700">Enter your Email</p>
+                        <a href="./index.html"
+                            class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-gray-200 hover:bg-grey-300 focus:ring-4 focus:ring-grey-300">
+                            <img class="h-5 mr-2"
+                                src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png"
+                                alt="">
+                            Sign up with Google
+                        </a>
+                        <div class="flex items-center mb-3">
+                            <hr class="h-0 border-b border-solid border-grey-500 grow">
+                            <p class="mx-4 text-grey-600">or</p>
+                            <hr class="h-0 border-b border-solid border-grey-500 grow">
+                        </div>
+                        <label for="email1" class="mb-2 text-sm text-start text-grey-900">Email*</label>
+                        <input id="email1" type="email" placeholder="jinjuu@gmail.com" name="user_email"
+                            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
+
+
+                        <label for="user" class="mb-2 text-sm text-start text-grey-900">Username</label>
+                        <input id="user" type="name" name="user_username" placeholder="jinjuu411"
+                            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
+                        <label for="pass" class="mb-2 text-sm text-start text-grey-900">password</label>
+                        <input id="pass" type="password" name="user_password" placeholder="password"
+                            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
+                        <label for="pass" class="mb-2 text-sm text-start text-grey-900">Re-Password</label>
+                        <input id="repass" type="password" name="repassword" placeholder="re-password"
+                            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
+
+                        <label for="date" class="mb-2 text-sm text-start text-grey-900">Birthday</label>
+
+                        <input type="date" name="user_birthday" placeholder="Select a date"
+                            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
+                        <label for="tel" class="mb-2 text-sm text-start text-grey-900">Phone number</label>
+                        <input id="tel" name="user_phonenumber" type="text" placeholder="phone number"
+                            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-gray-100 text-dark-grey-900 rounded-2xl" />
+                        <label class="relative inline-flex items-center mr-3 cursor-pointer select-none mb-8">
+                            <input type="checkbox" checked value="" class="sr-only peer">
+                            <div
+                                class="w-5 h-5 bg-white border-2 rounded-sm border-gray-300 peer peer-checked:border-0 peer-checked:bg-primary">
+                                <img class=""
+                                    src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/icons/check.png"
+                                    alt="tick">
+                            </div>
+                            <span class="ml-3 text-sm font-normal text-grey-900">Accept Privacy Policy and
+                                Terms&Conditions</span>
+                        </label>
+
+                        <button type="submit" onclick="return checkForm()"
+                            class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-full rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-primary">Submit</button>
+                </div>
+                </form>
+
+
+                <script>
+                    function checkForm() {
+                        // Get form inputs
+                        var email = document.getElementById('email1').value.trim();
+                        var username = document.getElementById('user').value.trim();
+                        var password = document.getElementById('pass').value.trim();
+                        var repassword = document.getElementById('repass').value.trim();
+                        var birthday = document.getElementsByName('user_birthday')[0].value.trim();
+                        var phoneNumber = document.getElementsByName('user_phonenumber')[0].value.trim();
+                
+                        // Validate email
+                        if (email === '') {
+                            alert('Email field is required');
+                            return false;
+                        }
+                
+                        // Validate username
+                        if (username === '') {
+                            alert('Username field is required');
+                            return false;
+                        }
+                
+                        // Validate password
+                        if (password === '') {
+                            alert('Password field is required');
+                            return false;
+                        }
+                
+                        // Validate re-password
+                        if (repassword === '') {
+                            alert('Re-Password field is required');
+                            return false;
+                        }
+                
+                        // Check if password and re-password match
+                        if (password !== repassword) {
+                            alert('Passwords do not match');
+                            return false;
+                        }
+                
+                        // Validate birthday
+                        if (birthday === '') {
+                            alert('Birthday field is required');
+                            return false;
+                        }
+                
+                        // Validate phone number
+                        if (phoneNumber === '') {
+                            alert('Phone number field is required');
+                            return false;
+                        }
+                
+                        // Validate checkbox
+                        var checkbox = document.querySelector('input[type="checkbox"]');
+                        if (!checkbox.checked) {
+                            alert('Please accept the Privacy Policy and Terms & Conditions');
+                            return false;
+                        }
+                
+                        // If all validations pass, the form will be submitted
+                        return true;
+                    }
+                </script>
+                
+
             </div>
         </div>
-
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Add</button>
-            </div>
-            <a class="btn btn-danger" href="/webboard">Back</a>
-        </div>
-    </form>
-
-</div>
+    </div>
+    </div>
 </body>
+
 </html>
