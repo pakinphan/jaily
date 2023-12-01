@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "build": "npx tailwindcss -i ./src/input.css -o ./assets/output.css ",
+    "build": "ejs src/views -o dist --extension ejs && npx tailwindcss build src/input.css -o assets/output.css",
     "nodeinstall": "i bcrypt cookie-session express express-validator nodemon mysql2",
     "stop": "pkill -f nodemon"
   },
