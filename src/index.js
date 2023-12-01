@@ -29,6 +29,28 @@ app.get('/register', (req, res) => {
 
     res.render('write');
   });
+  app.get('/browse', (req, res) => {
+
+    res.render('browse');
+  });
+  app.get('/error', (req, res) => {
+
+    res.render('error');
+  });
+  app.get('/howto', (req, res) => {
+
+    res.render('howto');
+  });
+
+  app.get('/read', (req, res) => {
+
+    res.render('read');
+  });
+  app.get('/tnc', (req, res) => {
+
+    res.render('tnc');
+  });
+
 
 
 app.set("views", path.join(__dirname, "views"));

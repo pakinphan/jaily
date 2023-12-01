@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Write</title>
-  <link href="/assets/output.css" rel="stylesheet">
+  <link href="/dist/output.css" rel="stylesheet">
   <link href="/assets/css/input.css" rel="stylesheet">
   <link href="/src/input.css" rel="stylesheet">
 
@@ -86,69 +86,46 @@
   <div class="flex items-center justify-center">
     <div class="container h-full">
       <div class="flex justify-center mt-48">
-        <p class="text-6xl font-black ml-6 dark:text-white"> NEW JOURNEY</p>
+        <p class="text-6xl font-black ml-6 dark:text-white">FAQ</p>
       </div>
-
-      <div
-        class="grid max-w-screen-xl px-4 py-8 mx-auto mt-16 lg:gap-8 xl:gap-0 lg:py-20 lg:grid-cols-12 shadow-xl rounded-2xl">
-        <div class="lg:mt-0 lg:col-span-5 lg:flex-row justify-center">
-          <a href=""
-            class="w-80 rounded-box sm:w-4/6 sm:ml-12 h-60 object-cover bg-gray-200 m-3 flex justify-center items-center dark:bg-gray-800">
-            <h1 class="text-8xl font-extrabold text-secondary">+</h1>
-          </a>
+      <div class="collapse collapse-arrow bg-gray-100 dark:bg-gray-800 dark:text-primary mt-24 mb-4 ">
+        <input class="" type="radio" name="my-accordion-2" checked="checked" /> 
+        <div class="collapse-title text-xl font-medium">
+          What is Jaily?
         </div>
-        <div class="sm:ml-12  mr-auto place-self-center lg:col-span-7">
-          <input placeholder=" add tag +"
-            class="p-2  border-gray-400 border-2 rounded-full w-40 bg-transparent dark:text-white" type="text">
-          <br>
-          <input placeholder="add title"
-            class="p-2 border-gray-400 border-2 rounded-box w-full mt-3 max-w-2xl mt-3 mb-4 text-3xl font-bold tracking-tight leading-none md:text-4xl xl:text-4xl text-gray-800 dark:text-white bg-transparent"
-            type="text">
-          <br>
-          <textarea name="paragraph_1" id="" cols="30" rows="10" placeholder="description"
-            class="p-2 border-gray-400 border-2 rounded-box bg-transparent w-80 h-32 md:w-full max-w-2xl mb-6 font-light text-secondary lg:mb-8 md:text-md lg:text-md dark:text-gray-400"
-            type="text"></textarea>
-
-
-        </div>
-
-      </div>
-      <div>
-        <div class="flex justify-center mt-12">
-          <p class="text-3xl font-black ml-6 text-primary dark:text-primary"> START YOUR JOURNEY!!</p>
-        </div>
-        <div id="sectionContainer">
-          <div
-            class="paragraph max-w-screen-xl px-4 py-8 mx-auto mt-16 lg:gap-8 xl:gap-0 lg:py-20 shadow-xl rounded-2xl flex flex-col sm:flex-row items-center mb-6">
-            <div class="lg:mt-0 flex justify-center w-5/6 sm:w-2/6">
-              <a href=""
-                class="w-80 rounded-box sm:w-4/6 sm:ml-12 h-60 object-cover bg-gray-200 m-3 flex justify-center items-center dark:bg-gray-800">
-                <h1 class="text-8xl font-extrabold text-secondary">+</h1>
-              </a>
-            </div>
-            <div class="sm:ml-12 mr-auto place-self-center w-5/6 sm:w-4/6 mx-auto ">
-              <textarea name="" id="" cols="30" rows="10" placeholder="Write here"
-                class="p-2 border-gray-400 border-2 rounded-box bg-transparent w-full md:w-3/4 font-light text-secondary md:text-md lg:text-md dark:text-gray-400"
-                type="text"></textarea>
-            </div>
-
-          </div>
-        </div>
-        <div class="flex justify-center"><button class="w-20 font-bold del-section-btn mr-5">
-            <p class="text-gray-500">DELETE -</p>
-          </button>
-          <button class="w-40 font-bold add-section-btn mr-5">
-            <p class="text-secondary">ADD PARAGRAPH +</p>
-          </button>
-
-
-        </div>
-        <div class="flex justify-center">
-          <button class="w-36 font-bold bg-primary p-2 rounded-box m-5">
-            <p class="text-white ">PUBLISH </p>
-          </button>
+        <div class="collapse-content "> 
+          <p>Jaily is a journal website with interesting interface for people to share their journey through the map and picture. The name “Jaily” comes from Journal and daily. We aim to bring all the amazing trip and story from people around the world to the world. However, all story does not need to be real. You can use your imagination to write the content within the tag ‘fantasy’ too. We have thousans of tags provided for our writers to explore.</p>
         </div>
       </div>
+      <div class="collapse collapse-arrow bg-gray-100 dark:bg-gray-800 dark:text-primary my-4">
+        <input type="radio" name="my-accordion-2" /> 
+        <div class="collapse-title text-xl font-medium">
+          Why do I need to register before reading?
+        </div>
+        <div class="collapse-content"> 
+          <p>We are aiming to the complete personalization to you. This is benefit you to have the story that match you shows on “For You” page.</p>
+        </div>
+      </div>
+      <div class="collapse collapse-arrow bg-gray-100 dark:bg-gray-800 dark:text-primary my-4">
+        <input type="radio" name="my-accordion-2" /> 
+        <div class="collapse-title text-xl font-medium">
+          How I can journal on Jaily?
+        </div>
+        <div class="collapse-content"> 
+          <p>You need to login first, click “Write”. That’s all! We are looking forward to see your amazing journey.</p>
+        </div>
+      </div>
+      <div class="collapse collapse-arrow bg-gray-100 dark:bg-gray-800 dark:text-primary my-4">
+        <input type="radio" name="my-accordion-2" /> 
+        <div class="collapse-title text-xl font-medium">
+          How I can find Term and Conditions?
+        </div>
+        <div class="collapse-content"> 
+          <p>You can find our website <a href="./tnc.html">Term and Conditions</a> here!</p>
+        </div>
+      </div>
+    
+     
 
 
 
@@ -183,57 +160,65 @@
   </div>
 
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const sectionContainer = document.getElementById('sectionContainer');
-    const addSectionBtn = document.querySelector('.add-section-btn');
-    const delSectionBtn = document.querySelector('.del-section-btn');
-    let sectionCount = 1; // Start with 1 paragraph
-    const maxSections = 10;
+    document.addEventListener('DOMContentLoaded', function () {
+      const sectionContainer = document.getElementById('sectionContainer');
+      const addSectionBtn = document.querySelector('.add-section-btn');
+      const delSectionBtn = document.querySelector('.del-section-btn');
+      let sectionCount = 1; // Start with 1 paragraph
+      const maxSections = 10;
 
-    addSectionBtn.addEventListener('click', function () {
-      // Check if the limit has been reached
-      if (sectionCount < maxSections) {
-        // Clone the existing section
-        const newSection = sectionContainer.firstElementChild.cloneNode(true);
+      addSectionBtn.addEventListener('click', function () {
+        // Check if the limit has been reached
+        if (sectionCount < maxSections) {
+          // Clone the existing section
+          const newSection = sectionContainer.firstElementChild.cloneNode(true);
 
-        // Increment the section count
-        sectionCount++;
+          // Increment the section count
+          sectionCount++;
 
-        // Change the name attribute of the textarea in the cloned section
-        const textarea = newSection.querySelector('textarea');
-        textarea.name = `paragraph_${sectionCount}`;
-        textarea.id = `paragraph_${sectionCount}`; // Set a unique ID for the textarea
-        textarea.value = ''; // Set an initial value
+          // Change the name attribute of the textarea in the cloned section
+          const textarea = newSection.querySelector('textarea');
+          textarea.name = `paragraph_${sectionCount}`;
+          textarea.id = `paragraph_${sectionCount}`; // Set a unique ID for the textarea
+          textarea.value = ''; // Set an initial value
 
-        // Append the cloned section below the existing one
-        sectionContainer.appendChild(newSection);
-      } else {
-        // Optionally, you can provide some feedback to the user
-        alert('Maximum limit of paragraphs reached (10 paragraphs)');
-      }
+          // Append the cloned section below the existing one
+          sectionContainer.appendChild(newSection);
+        } else {
+          // Optionally, you can provide some feedback to the user
+          alert('Maximum limit of paragraphs reached (10 paragraphs)');
+        }
+      });
+
+      delSectionBtn.addEventListener('click', function () {
+        // Check if there are sections to delete
+        if (sectionCount > 1) {
+          // Remove the last section
+          const sections = document.querySelectorAll('.paragraph');
+          const lastSection = sections[sections.length - 1];
+
+          // Remove the last section
+          sectionContainer.removeChild(lastSection);
+
+          // Decrement the section count
+          sectionCount--;
+        } else {
+          // Optionally, you can provide some feedback to the user
+          alert('You must have at least 1 paragraph');
+        }
+      });
     });
+  </script>
 
-    delSectionBtn.addEventListener('click', function () {
-      // Check if there are sections to delete
-      if (sectionCount > 1) {
-        // Remove the last section
-        const sections = document.querySelectorAll('.paragraph');
-        const lastSection = sections[sections.length - 1];
+<script>
+  // JavaScript to handle the toggling of the menu items
+  const button = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+  const menu = document.getElementById('navbar-sticky');
 
-        // Remove the last section
-        sectionContainer.removeChild(lastSection);
-
-        // Decrement the section count
-        sectionCount--;
-      } else {
-        // Optionally, you can provide some feedback to the user
-        alert('You must have at least 1 paragraph');
-      }
-    });
+  button.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
   });
 </script>
-
-  
 
 
   <script src="/assets/js/darkmode.js"></script>

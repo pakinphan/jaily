@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write</title>
+  <link href="/assets/output.css" rel="stylesheet">
+  <link href="/assets/input.css" rel="stylesheet">
+  <link href="/src/index.js" rel="stylesheet">
+
+</head>
+
+<body class="dark:bg-gray-900">
+  <nav class=" bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
+
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="/index" class="flex items-center">
+        <img src="/assets/images/icons/logo.png" class="h-8 mr-3" alt="jaily">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">jaily</span>
+      </a>
+      <div class="flex md:order-2">
+        <a href="/write" type="button"
+          class="md:flex items-center text-white bg-primary hover:bg-primary focus:outline-none focus:ring-primary font-medium rounded-lg text-sm px-4 py-5 sm:py-2 text-center mr-3 md:mr-0 dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary">
+          <p class="sm1:hidden">WRITE</p>
+          <svg class="w-3 h-3 text-white dark:text-white ml-2 sm1:ml-0 sm1:w-4 sm1:h-4 " aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M9.546.5a9.5 9.5 0 1 0 9.5 9.5 9.51 9.51 0 0 0-9.5-9.5ZM13.788 11h-3.242v3.242a1 1 0 1 1-2 0V11H5.304a1 1 0 0 1 0-2h3.242V5.758a1 1 0 0 1 2 0V9h3.242a1 1 0 1 1 0 2Z" />
+          </svg>
+        </a>
+        <a href="/login"
+          class="text-gray-500 font-bold m-4 hover:text-secondary focus:outline-none focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600 text-sm rounded-lg">
+          Login
+        </a>
+        <label class="swap swap-rotate mx-2">
+          <!-- this hidden checkbox controls the state -->
+          <input type="checkbox" id="dark-mode-toggle" />
+          <!-- sun icon -->
+          <svg class="swap-on fill-current1 w-6 h-6   " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+          </svg>
+          <!-- moon icon -->
+          <svg class="swap-off fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+          </svg>
+        </label>
+        <button data-collapse-toggle="navbar-sticky" type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          aria-controls="navbar-sticky" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M1 1h15M1 7h15M1 13h15" />
+          </svg>
+        </button>
+
+      </div>
+
+      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        <ul
+          class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a href="/index"
+              class="block py-2 pl-3 pr-4 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0 md:dark:text-primary"
+              aria-current="page">Home</a>
+          </li>
+          <li>
+            <a href="/browse"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-secondary dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Browse</a>
+          </li>
+          <li>
+            <a
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded cursor-not-allowed opacity-50 md:p-0 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-secondary dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-500 md:dark:hover:bg-transparent dark:border-gray-700 pointer-events-none">
+              Collection
+            </a>
+          </li>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <div class="flex items-center justify-center " >
+    <div class="container h-full font-black ml-6 dark:text-white">
+      <div class="flex justify-center mt-48">
+        <p class="text-6xl mt-36">Term and Conditions</p>
+      </div>
+      <h3 class="mt-24">นโยบายความเป็นส่วนตัว<h3>
+        <br>
+        <p>เว็บไซต์ Jaily ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณ โดยนโยบายความเป็นส่วนตัวฉบับนี้ได้อธิบายแนวปฏิบัติเกี่ยวกับการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคล รวมถึงสิทธิต่าง ๆ ของเจ้าของข้อมูลส่วนบุคคล ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล<p>
+        <br>
+        <p>การเก็บรวบรวมข้อมูลส่วนบุคคล<p>
+        <p>เราจะเก็บรวบรวมข้อมูลส่วนบุคคลที่ได้รับโดยตรงจากคุณผ่านช่องทาง ดังต่อไปนี้<p>
+        <p>การสมัครสมาชิก<p>
+        <p>โทรศัพท์ อีเมล เราอาจเก็บรวบรวมข้อมูลส่วนบุคคลของคุณที่เราเข้าถึงได้จากแหล่งอื่น เช่น เสิร์ชเอนจิน โซเชียลมีเดีย หน่วยงานราชการ บุคคลภายนอกอื่นๆ เป็นต้น<p>
+        <br>
+        <p>ประเภทข้อมูลส่วนบุคคลที่เก็บรวบรวม<p>
+        <p>ข้อมูลส่วนบุคคล เช่น ชื่อ นามสกุล อายุ วันเดือนปีเกิด สัญชาติ เลขประจำตัวประชาชน หนังสือเดินทาง เป็นต้น
+        ข้อมูลการติดต่อ เช่น ที่อยู่ หมายเลขโทรศัพท์ อีเมล เป็นต้น
+        ข้อมูลบัญชี เช่น บัญชีผู้ใช้งาน ประวัติการใช้งาน เป็นต้น
+        หลักฐานแสดงตัวตน เช่น สำเนาบัตรประจำตัวประชาชน สำเนาหนังสือเดินทาง เป็นต้น
+        ข้อมูลการทำธุรกรรมและการเงิน เช่น ประวัติการสั่งซื้อ รายละเอียดบัตรเครดิต บัญชีธนาคาร เป็นต้น
+        ข้อมูลทางเทคนิค เช่น IP Address, Cookie ID, ประวัติการใช้งานเว็บไซต์ (Activity Log) เป็นต้น
+        ข้อมูลอื่นๆ เช่น รูปภาพ ภาพเคลื่อนไหว และข้อมูลอื่นใดที่ถือว่าเป็นข้อมูลส่วนบุคคลตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล
+        เราจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลอ่อนไหว ดังต่อไปนี้ เมื่อเราได้รับความยินยอมโดยชัดแจ้งจากคุณ เว้นแต่กฎหมายกำหนดให้ทำได้<p>
+        <br>
+        <p>ผู้เยาว์<p>
+        <p>หากคุณมีอายุต่ำกว่า 20 ปีหรือมีข้อจำกัดความสามารถตามกฎหมาย เราอาจเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณ เราอาจจำเป็นต้องให้พ่อแม่หรือผู้ปกครองของคุณให้ความยินยอมหรือที่กฎหมายอนุญาตให้ทำได้ หากเราทราบว่ามีการเก็บรวบรวมข้อมูลส่วนบุคคลจากผู้เยาว์โดยไม่ได้รับความยินยอมจากพ่อแม่หรือผู้ปกครอง เราจะดำเนินการลบข้อมูลนั้นออกจากเซิร์ฟเวอร์ของเรา<p>
+        <br>
+        <p>วิธีการเก็บรักษาข้อมูลส่วนบุคคล<p>
+        <p>เราจะเก็บรักษาข้อมูลส่วนบุคคลของคุณในรูปแบบเอกสารและรูปแบบอิเล็กทรอนิกส์<p>
+        <br>
+        <p>เราเก็บรักษาข้อมูลส่วนบุคคลของคุณ ดังต่อไปนี้<p>
+        <p>เซิร์ฟเวอร์บริษัทของเราในประเทศไทย<br>
+        ผู้ให้บริการเซิร์ฟเวอร์ในต่างประเทศ<br>
+        การประมวลผลข้อมูลส่วนบุคคล<br><p>
+        <br>
+        <p>เราจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณเพื่อวัตถุประสงค์ดังต่อไปนี้<p>
+        <p>เพื่อสร้างและจัดการบัญชีผู้ใช้งาน<br>
+        เพื่อจัดส่งสินค้าหรือบริการ<br>
+        เพื่อปรับปรุงสินค้า บริการ หรือประสบการณ์การใช้งาน<br>
+        เพื่อการบริหารจัดการภายในบริษัท<br>
+        เพื่อการตลาดและการส่งเสริมการขาย<br>
+        เพื่อการบริการหลังการขาย<br>
+        เพื่อรวบรวมข้อเสนอแนะ<br>
+        เพื่อชำระค่าสินค้าหรือบริการ<br>
+        เพื่อปฏิบัติตามข้อตกลงและเงื่อนไข (Terms and Conditions)<br>
+        เพื่อปฏิบัติตามกฎหมายและกฎระเบียบของหน่วยงานราชการ<br>
+        การเปิดเผยข้อมูลส่วนบุคคล<p>
+        <br>
+        <p>เราอาจเปิดเผยข้อมูลส่วนบุคคลของคุณให้แก่ผู้อื่นภายใต้ความยินยอมของคุณหรือที่กฎหมายอนุญาตให้เปิดเผยได้ ดังต่อไปนี้<p>
+        <br>
+        <p>การบริหารจัดการภายในองค์กร<p>
+        <p>เราอาจเปิดเผยข้อมูลส่วนบุคคลของคุณภายในบริษัทเท่าที่จำเป็นเพื่อปรับปรุงและพัฒนาสินค้าหรือบริการของเรา เราอาจรวบรวมข้อมูลภายในสำหรับสินค้าหรือบริการต่าง ๆ ภายใต้นโยบายนี้เพื่อประโยชน์ของคุณและผู้อื่นมากขึ้น<p>
+        <br>
+        <p>ผู้ให้บริการ<p>
+        <p>เราอาจเปิดเผยข้อมูลส่วนบุคคลของคุณบางอย่างให้กับผู้ให้บริการของเราเท่าที่จำเป็นเพื่อดำเนินงานในด้านต่าง ๆ เช่น การชำระเงิน การตลาด การพัฒนาสินค้าหรือบริการ เป็นต้น ทั้งนี้ ผู้ให้บริการมีนโยบายความเป็นส่วนตัวของตนเอง<p>
+        <br>
+        <p>พันธมิตรทางธุรกิจ<p>
+        <p>เราอาจเปิดเผยข้อมูลบางอย่างกับพันธมิตรทางธุรกิจเพื่อติดต่อและประสานงานในการให้บริการสินค้าหรือบริการ และให้ข้อมูลเท่าที่จำเป็นเกี่ยวกับความพร้อมใช้งานของสินค้าหรือบริการ<p>
+        <br>
+        <p>การบังคับใช้กฎหมาย<p>
+        <p>ในกรณีที่มีกฎหมายหรือหน่วยงานราชการร้องขอ เราจะเปิดเผยข้อมูลส่วนบุคคลของคุณเท่าที่จำเป็นให้แก่หน่วยงานราชการ เช่น ศาล หน่วยงานราชการ เป็นต้น<p>
+        <br>
+        <p>การโอนข้อมูลส่วนบุคคลไปต่างประเทศ<p>
+        <p>เราอาจเปิดเผยหรือโอนข้อมูลส่วนบุคคลของคุณไปยังบุคคล องค์กร หรือเซิร์ฟเวอร์ (Server) ที่ตั้งอยู่ในต่างประเทศ โดยเราจะดำเนินการตามมาตรการต่าง ๆ เพื่อให้มั่นใจว่าการโอนข้อมูลส่วนบุคคลของคุณไปยังประเทศปลายทางนั้นมีมาตรฐานการคุ้มครองข้อมูลส่วนบุคคลอย่างเพียงพอ หรือกรณีอื่น ๆ ตามที่กฎหมายกำหนด<p>
+        <br>
+        <p>ระยะเวลาจัดเก็บข้อมูลส่วนบุคคล<p>
+        <p>เราจะเก็บรักษาข้อมูลส่วนบุคคลของคุณไว้ตามระยะเวลาที่จำเป็นในระหว่างที่คุณเป็นลูกค้าหรือมีความสัมพันธ์อยู่กับเราหรือตลอดระยะเวลาที่จำเป็นเพื่อให้บรรลุวัตถุประสงค์ที่เกี่ยวข้องกับนโยบายฉบับนี้ ซึ่งอาจจำเป็นต้องเก็บรักษาไว้ต่อไปภายหลังจากนั้น หากมีกฎหมายกำหนดไว้ เราจะลบ ทำลาย หรือทำให้เป็นข้อมูลที่ไม่สามารถระบุตัวตนของคุณได้ เมื่อหมดความจำเป็นหรือสิ้นสุดระยะเวลาดังกล่าว<p>
+        <br>
+        <p>สิทธิของเจ้าของข้อมูลส่วนบุคคล<p>
+        <p>ภายใต้กฎหมายคุ้มครองข้อมูลส่วนบุคคล คุณมีสิทธิในการดำเนินการดังต่อไปนี้<p>
+        <br>
+        <p>สิทธิขอถอนความยินยอม (right to withdraw consent) หากคุณได้ให้ความยินยอม เราจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณ ไม่ว่าจะเป็นความยินยอมที่คุณให้ไว้ก่อนวันที่กฎหมายคุ้มครองข้อมูลส่วนบุคคลใช้บังคับหรือหลังจากนั้น คุณมีสิทธิที่จะถอนความยินยอมเมื่อใดก็ได้ตลอดเวลา<p>
+        <br>
+        <p>สิทธิขอเข้าถึงข้อมูล (right to access) คุณมีสิทธิขอเข้าถึงข้อมูลส่วนบุคคลของคุณที่อยู่ในความรับผิดชอบของเราและขอให้เราทำสำเนาข้อมูลดังกล่าวให้แก่คุณ รวมถึงขอให้เราเปิดเผยว่าเราได้ข้อมูลส่วนบุคคลของคุณมาได้อย่างไร<p>
+        <br>
+        <p>สิทธิขอถ่ายโอนข้อมูล (right to data portability) คุณมีสิทธิขอรับข้อมูลส่วนบุคคลของคุณในกรณีที่เราได้จัดทำข้อมูลส่วนบุคคลนั้นอยู่ในรูปแบบให้สามารถอ่านหรือใช้งานได้ด้วยเครื่องมือหรืออุปกรณ์ที่ทำงานได้โดยอัตโนมัติและสามารถใช้หรือเปิดเผยข้อมูลส่วนบุคคลได้ด้วยวิธีการอัตโนมัติ รวมทั้งมีสิทธิขอให้เราส่งหรือโอนข้อมูลส่วนบุคคลในรูปแบบดังกล่าวไปยังผู้ควบคุมข้อมูลส่วนบุคคลอื่นเมื่อสามารถทำได้ด้วยวิธีการอัตโนมัติ และมีสิทธิขอรับข้อมูลส่วนบุคคลที่เราส่งหรือโอนข้อมูลส่วนบุคคลในรูปแบบดังกล่าวไปยังผู้ควบคุมข้อมูลส่วนบุคคลอื่นโดยตรง เว้นแต่ไม่สามารถดำเนินการได้เพราะเหตุทางเทคนิค<p>
+        <br>
+        <p>สิทธิขอคัดค้าน (right to object) คุณมีสิทธิขอคัดค้านการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณในเวลาใดก็ได้ หากการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณที่ทำขึ้นเพื่อการดำเนินงานที่จำเป็นภายใต้ประโยชน์โดยชอบด้วยกฎหมายของเราหรือของบุคคลหรือนิติบุคคลอื่น โดยไม่เกินขอบเขตที่คุณสามารถคาดหมายได้อย่างสมเหตุสมผลหรือเพื่อดำเนินการตามภารกิจเพื่อสาธารณประโยชน์<p>
+        <br>
+        <p>สิทธิขอให้ลบหรือทำลายข้อมูล (right to erasure/destruction) คุณมีสิทธิขอลบหรือทำลายข้อมูลส่วนบุคคลของคุณหรือทำให้ข้อมูลส่วนบุคคลเป็นข้อมูลที่ไม่สามารถระบุตัวคุณได้ หากคุณเชื่อว่าข้อมูลส่วนบุคคลของคุณถูกเก็บรวบรวม ใช้ หรือเปิดเผยโดยไม่ชอบด้วยกฎหมายที่เกี่ยวข้องหรือเห็นว่าเราหมดความจำเป็นในการเก็บรักษาไว้ตามวัตถุประสงค์ที่เกี่ยวข้องในนโยบายฉบับนี้ หรือเมื่อคุณได้ใช้สิทธิขอถอนความยินยอมหรือใช้สิทธิขอคัดค้านตามที่แจ้งไว้ข้างต้นแล้ว<p>
+        <br>
+        <p>สิทธิขอให้ระงับการใช้ข้อมูล (right to restriction of processing) คุณมีสิทธิขอให้ระงับการใช้ข้อมูลส่วนบุคคลชั่วคราวในกรณีที่เราอยู่ระหว่างตรวจสอบตามคำร้องขอใช้สิทธิขอแก้ไขข้อมูลส่วนบุคคลหรือขอคัดค้านของคุณหรือกรณีอื่นใดที่เราหมดความจำเป็นและต้องลบหรือทำลายข้อมูลส่วนบุคคลของคุณตามกฎหมายที่เกี่ยวข้องแต่คุณขอให้เราระงับการใช้แทน<p>
+        <br>
+        <p>สิทธิขอให้แก้ไขข้อมูล (right to rectification) คุณมีสิทธิขอแก้ไขข้อมูลส่วนบุคคลของคุณให้ถูกต้อง เป็นปัจจุบัน สมบูรณ์ และไม่ก่อให้เกิดความเข้าใจผิด<p>
+        <br>
+        <p>สิทธิร้องเรียน (right to lodge a complaint) คุณมีสิทธิร้องเรียนต่อผู้มีอำนาจตามกฎหมายที่เกี่ยวข้อง หากคุณเชื่อว่าการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณ เป็นการกระทำในลักษณะที่ฝ่าฝืนหรือไม่ปฏิบัติตามกฎหมายที่เกี่ยวข้อง<p>
+        <br>
+        <p>คุณสามารถใช้สิทธิของคุณในฐานะเจ้าของข้อมูลส่วนบุคคลข้างต้นได้ โดยติดต่อมาที่เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของเราตามรายละเอียดท้ายนโยบายนี้ เราจะแจ้งผลการดำเนินการภายในระยะเวลา 30 วัน นับแต่วันที่เราได้รับคำขอใช้สิทธิจากคุณ ตามแบบฟอร์มหรือวิธีการที่เรากำหนด ทั้งนี้ หากเราปฏิเสธคำขอเราจะแจ้งเหตุผลของการปฏิเสธให้คุณทราบผ่านช่องทางต่าง ๆ เช่น ข้อความ (SMS) อีเมล โทรศัพท์ จดหมาย เป็นต้น<p>
+        <br>
+        <p>การโฆษณาและการตลาด<p>
+        <p>เพื่อประโยชน์ในการได้รับสินค้าหรือบริการของเรา เราใช้ข้อมูลของคุณเพื่อวิเคราะห์และปรับปรุงสินค้าหรือบริการ และทำการตลาด เราใช้ข้อมูลดังกล่าวเพื่อให้สินค้าหรือบริการเหมาะสมกับคุณ<p>
+        <br>
+        <p>เราอาจส่งข้อมูลหรือจดหมายข่าวไปยังอีเมลของคุณ โดยมีวัตถุประสงค์เพื่อเสนอสิ่งที่น่าสนกับคุณ หากคุณไม่ต้องการรับการติดต่อสื่อสารจากเราผ่านทางอีเมลอีกต่อไป คุณสามารถกด “ยกเลิกการติดต่อ” ในลิงก์อีเมลหรือติดต่อมายังอีเมลของเราได้<p>
+        <br>
+        <p>เทคโนโลยีติดตามตัวบุคคล (Cookies)<p>
+        <p>เพื่อเพิ่มประสบการณ์การใช้งานของคุณให้สมบูรณ์และมีประสิทธิภาพมากขึ้น เราใช้คุกกี้ (Cookies) หรือเทคโนโลยีที่คล้ายคลึงกัน เพื่อพัฒนาการเข้าถึงสินค้าหรือบริการ โฆษณาที่เหมาะสม และติดตามการใช้งานของคุณ เราใช้คุกกี้เพื่อระบุและติดตามผู้ใช้งานเว็บไซต์และการเข้าถึงเว็บไซต์ของเรา หากคุณไม่ต้องการให้มีคุกกี้ไว้ในคอมพิวเตอร์ของคุณ คุณสามารถตั้งค่าบราวเซอร์เพื่อปฏิเสธคุกกี้ก่อนที่จะใช้เว็บไซต์ของเราได้<p>
+        <br>
+        <p>การรักษาความมั่งคงปลอดภัยของข้อมูลส่วนบุคคล<p>
+        <p>เราจะรักษาความมั่นคงปลอดภัยของข้อมูลส่วนบุคคลของคุณไว้ตามหลักการ การรักษาความลับ (confidentiality) ความถูกต้องครบถ้วน (integrity) และสภาพพร้อมใช้งาน (availability) ทั้งนี้ เพื่อป้องกันการสูญหาย เข้าถึง ใช้ เปลี่ยนแปลง แก้ไข หรือเปิดเผย นอกจากนี้เราจะจัดให้มีมาตรการรักษาความมั่นคงปลอดภัยของข้อมูลส่วนบุคคล ซึ่งครอบคลุมถึงมาตรการป้องกันด้านการบริหารจัดการ (administrative safeguard) มาตรการป้องกันด้านเทคนิค (technical safeguard) และมาตรการป้องกันทางกายภาพ (physical safeguard) ในเรื่องการเข้าถึงหรือควบคุมการใช้งานข้อมูลส่วนบุคคล (access control)<p>
+        <br>
+        <p>การแจ้งเหตุละเมิดข้อมูลส่วนบุคคล<p>
+        <p>ในกรณีที่มีเหตุละเมิดข้อมูลส่วนบุคคลของคุณเกิดขึ้น เราจะแจ้งให้สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคลทราบโดยไม่ชักช้าภายใน 72 ชั่วโมง นับแต่ทราบเหตุเท่าที่สามารถกระทำได้ ในกรณีที่การละเมิดมีความเสี่ยงสูงที่จะมีผลกระทบต่อสิทธิและเสรีภาพของคุณ เราจะแจ้งการละเมิดให้คุณทราบพร้อมกับแนวทางการเยียวยาโดยไม่ชักช้าผ่านช่องทางต่าง ๆ เช่น เว็บไซต์ ข้อความ (SMS) อีเมล โทรศัพท์ จดหมาย เป็นต้น<p>
+        <br>
+        <p>การแก้ไขเปลี่ยนแปลงนโยบายความเป็นส่วนตัว<p>
+        <p>เราอาจแก้ไขเปลี่ยนแปลงนโยบายนี้เป็นครั้งคราว โดยคุณสามารถทราบข้อกำหนดและเงื่อนไขนโยบายที่มีการแก้ไขเปลี่ยนแปลงนี้ได้ผ่านทางเว็บไซต์ของเรา<p>
+        <br>
+        <p>นโยบายนี้แก้ไขล่าสุดและมีผลใช้บังคับตั้งแต่วันนี้เป็นต้นไป<p>
+    
+     
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+  <div class="bg-secondary dark:bg-black w-full h-96 mt-36 flex flex-col justify-center items-center font-kdam">
+    <div class="flex items-center">
+      <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
+        <a href="https://www.instagram.com/thurstiiiiiiiiiiiiiii/"><img class="h-9 w-9"
+            src="/assets/images/icons/instagram.png" alt=""></a>
+      </div>
+      <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
+        <a href="https://github.com/pakinphan"> <img class="h-9 w-9" src="/assets/images/icons/github.png" alt=""></a>
+      </div>
+      <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
+        <a href="https://www.linkedin.com/in/pakin-phanthawaorchai-48a123289/"><img class="h-9 w-9"
+            src="/assets/images/icons//linkedin.png" alt=""></a>
+      </div>
+    </div>
+
+    <div class="m-2"><a href="/index" class="text-white font-regular">HOME</a><span class="text-dark-grey-900">
+        · </span><a href="" class="text-white font-regular">ABOUT</a><span class="text-dark-grey-900"> · </span><a
+        href="" class="text-white font-regular">TERMS&CONDITIONS</a></div>
+    <div>
+      <p class="dark:text-dark-grey-100">@ Jirapat & Pakin</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const sectionContainer = document.getElementById('sectionContainer');
+      const addSectionBtn = document.querySelector('.add-section-btn');
+      const delSectionBtn = document.querySelector('.del-section-btn');
+      let sectionCount = 1; // Start with 1 paragraph
+      const maxSections = 10;
+
+      addSectionBtn.addEventListener('click', function () {
+        // Check if the limit has been reached
+        if (sectionCount < maxSections) {
+          // Clone the existing section
+          const newSection = sectionContainer.firstElementChild.cloneNode(true);
+
+          // Increment the section count
+          sectionCount++;
+
+          // Change the name attribute of the textarea in the cloned section
+          const textarea = newSection.querySelector('textarea');
+          textarea.name = `paragraph_${sectionCount}`;
+          textarea.id = `paragraph_${sectionCount}`; // Set a unique ID for the textarea
+          textarea.value = ''; // Set an initial value
+
+          // Append the cloned section below the existing one
+          sectionContainer.appendChild(newSection);
+        } else {
+          // Optionally, you can provide some feedback to the user
+          alert('Maximum limit of paragraphs reached (10 paragraphs)');
+        }
+      });
+
+      delSectionBtn.addEventListener('click', function () {
+        // Check if there are sections to delete
+        if (sectionCount > 1) {
+          // Remove the last section
+          const sections = document.querySelectorAll('.paragraph');
+          const lastSection = sections[sections.length - 1];
+
+          // Remove the last section
+          sectionContainer.removeChild(lastSection);
+
+          // Decrement the section count
+          sectionCount--;
+        } else {
+          // Optionally, you can provide some feedback to the user
+          alert('You must have at least 1 paragraph');
+        }
+      });
+    });
+  </script>
+
+<script>
+  // JavaScript to handle the toggling of the menu items
+  const button = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+  const menu = document.getElementById('navbar-sticky');
+
+  button.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
+
+
+  <script src="/assets/js/darkmode.js"></script>
+</body>
+
+</html>
