@@ -66,6 +66,45 @@ app.get('/', ifNotLoggedIn, (req,res, next) =>{
 })
 
 
+app.get("/", (req, res) => {
+    try {
+      // Query to retrieve data from your MySQL database
+      dbConnection.query("SELECT * FROM story_info", (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).render("error", { error: "Internal Server Error" });
+        }
+  
+        // Render EJS template and pass data to it
+        res.render("index", { stories: result });
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).render("error", { error: "Internal Server Error" });
+    }
+  });
+// app.use((req, res, next) => {
+//     // Create an error object
+//     const err = new Error('Not Found');
+//     err.status = 404;
+  
+//     // Forward the error to the next middleware
+//     next(err);
+//   });
+  
+//   // Middleware to render the custom 404 page
+//   app.use((err, req, res, next) => {
+//     // Check if the error status is 404
+//     if (err.status === 404) {
+//       // Render the custom 404 page
+//       return res.status(404).render('404error.ejs');
+//     }
+  
+//     // For other errors, you can handle them accordingly
+//     // For example, render an error page or send a JSON response
+//     res.status(err.status || 500);
+//     res.send('Internal Server Error');
+//   });
 // app.post('/register', (req, res) => {
 //     const { user_username, user_email, user_password } = req.body;
 //     const sql = 'INSERT INTO users (user_username, user_email, user_password) VALUES (?, ?, ?)';
@@ -96,7 +135,7 @@ app.post('/register', async (req, res) => {
       // Insert the user into the database
       const result = await dbConnection.execute('INSERT INTO users (user_username, user_email, user_password, user_birthday, user_phonenumber) VALUES (?, ?, ?, ?, ?)', [req.body.user_username, req.body.user_email, hashedPassword, req.body.user_birthday, req.body.user_phonenumber]);
   
-      res.render('index');
+      res.render('login');
     } catch (error) {
       console.error(error);
       res.json({
@@ -105,7 +144,9 @@ app.post('/register', async (req, res) => {
     }
   });
   
-  
+
+
+
   app.post('/login', async (req, res) => {
     try {
       const { user_username, user_password } = req.body;
