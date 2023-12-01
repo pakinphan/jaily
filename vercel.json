@@ -18,12 +18,6 @@
         "src": "/(.*)",
         "dest": "/src/index.js"
       }
-    ],
-    "build": {
-      "commands": {
-        "build": "npm run build"
-      },
-      "use": "@vercel/node"
-    }
+    ]
   }
   
