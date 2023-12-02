@@ -108,6 +108,31 @@ app.set("view engine", "ejs");
     }
   });
 
+  router.post('/save-content', async (req, res) => {
+    try {
+      // Extract data from the request body
+      const { content_title, content_cover, content_description, content_image } = req.body;
+  
+      // Perform the insertion query
+      const [result] = await dbConnection.execute(
+        'INSERT INTO contents_new (content_title, content_cover, content_description, content_image) VALUES (?, ?, ?, ?)',
+        [content_title, content_cover, content_description, content_image]
+      );
+  
+      // Check if the insertion was successful
+      if (result.affectedRows > 0) {
+        // Data inserted successfully
+        res.status(201).json({ message: 'Content saved successfully!' });
+      } else {
+        // No rows affected, insertion failed
+        res.status(500).json({ error: 'Failed to save content.' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
 // app.get('/api/read', async (req, res) => {
 //     try {
 //       const results = await dbConnection.execute(`SELECT user_username FROM users WHERE user_username = 'jinju'`);
@@ -272,7 +297,7 @@ app.post('/register', async (req, res) => {
   });
   
   
-  app.listen(3000, () => console.log("server is running: 3000"));
+  app.listen(process.env.PORT || 3000, () => console.log("server is running: 3000"));
 
 //login Page
 // app.post('/', ifLoggedIn, [
