@@ -2,10 +2,12 @@ const express = require("express");
 const path = require('path');
 const cookieSession = require("cookie-session");
 const bcrypt = require('bcryptjs');
+var router = express.Router();
 
 const dbConnection = require('./database');
 const {body, validationResult} = require('express-validator');
 const session = require("express-session");
+
 
 const app = express();
 app.use(express.urlencoded({ extended: false}))
@@ -27,7 +29,7 @@ app.get('/register', (req, res) => {
   });
   app.get('/write', (req, res) => {
 
-    res.render('write');
+    res.render('write_page');
   });
   app.get('/browse', (req, res) => {
 
@@ -42,14 +44,16 @@ app.get('/register', (req, res) => {
     res.render('howto');
   });
 
-  app.get('/read', (req, res) => {
+//   app.get('/read', (req, res) => {
 
-    res.render('read');
-  });
+//     res.render('read_page');
+//   });
   app.get('/tnc', (req, res) => {
 
     res.render('tnc');
   });
+
+
 
 
 
@@ -63,6 +67,66 @@ app.set("view engine", "ejs");
       maxAge: 3600*1000 //1hour
     })
   );
+
+// const user = {
+//     firstName: 'John',
+//     lastName: 'Doe'
+
+// }
+
+// app.get('/', (req, res) =>{
+//     console.log(user)
+//     res.render('index', {
+//         user : user
+//     })
+// })
+
+  app.get("/", async (req, res) => {
+    try {
+        const [stories] = await dbConnection.execute("SELECT * FROM contents_new;");
+        console.log(stories)
+      res.render('index', { 
+        stories :stories 
+        }); 
+    } catch (error) {
+      console.error(error);
+      res.status(500).render('error', { message: 'Internal Server Error' });
+    }
+  });
+  
+  app.get('/read/:id', async (req, res) => {
+    try {
+      // Fetch the content from the database based on the ID
+      const contentId = req.params.id;
+      const [content] = await dbConnection.execute('SELECT * FROM contents_new WHERE content_id = ?', [contentId]);
+      console.log(content)
+      res.render('read_page', { content: content[0] });
+      
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send({ error: 'Internal Server Error' });
+    }
+  });
+
+// app.get('/api/read', async (req, res) => {
+//     try {
+//       const results = await dbConnection.execute(`SELECT user_username FROM users WHERE user_username = 'jinju'`);
+//       const username = results[0][0].user_username;
+  
+//       res.status(200).render('index', { result: { user_username: username } });
+
+//     } catch (err) {
+//       console.error(err);
+//       return res.status(500).send({ error: 'Internal Server Error' });
+//     }
+//   });
+  
+
+//   app.get("/api/list?", async (req, res) => {
+//     console.log(req.query.page)
+//   });
+  
+  module.exports = router;
   
 const ifNotLoggedIn = (req, res, next) => {
 if (!req.session.isLoggedIn) {
@@ -80,12 +144,15 @@ const ifLoggedIn = (req, res, next) => {
 }
 
 
-app.get('/', ifNotLoggedIn, (req,res, next) =>{
-    dbConnection.execute("SELECT user_username FROM user_info WHERE user_username =", [req, session.userID]).then(([row]) => {res.render('index', {
-        name: row[0].name
+// app.get('/', ifNotLoggedIn, (req,res, next) =>{
+//     dbConnection.execute("SELECT user_username FROM user_info WHERE user_username =", [req, session.userID]).then(([row]) => {res.render('index', {
+//         name: row[0].name
 
-    })})
-})
+//     })})
+// })
+
+
+
 
 
 app.get("/", (req, res) => {
@@ -140,6 +207,8 @@ app.get("/", (req, res) => {
 //   });
 
 
+
+
 app.post('/register', async (req, res) => {
     try {
       // Check if the email already exists
@@ -190,7 +259,7 @@ app.post('/register', async (req, res) => {
         req.session.userID = user[0].user_username;
   
         // Redirect to /index after successful login
-        return res.redirect('/index');
+        return res.redirect('/');
       } else {
         // Invalid password
         return res.render('login', { error: 'Invalid username or password' });

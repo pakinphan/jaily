@@ -16,7 +16,7 @@
         class=" bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
 
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="/pages/index.html" class="flex items-center">
+            <a href="/" class="flex items-center">
                 <img src="/assets/images/icons/logo.png" class="h-8 mr-3" alt="jaily">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">jaily</span>
             </a>
@@ -64,17 +64,19 @@
                 <ul
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
-                        <a href="#"
+                        <a href="/"
                             class="block py-2 pl-3 pr-4 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0 md:dark:text-primary"
                             aria-current="page">Home</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="/browse"
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-secondary dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Browse</a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-secondary dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Collection</a>
+                        <a
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded cursor-not-allowed opacity-50 md:p-0 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-secondary dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-500 md:dark:hover:bg-transparent dark:border-gray-700 pointer-events-none">
+                        Collection
+                      </a>
                     </li>
                 </ul>
             </div>
@@ -82,39 +84,27 @@
         </div>
     </nav>
 
-    <div
-        class="grid max-w-screen-xl px-4 py-8 mx-auto mt-16 lg:gap-8 xl:gap-0 lg:py-20 lg:grid-cols-12 shadow-xl rounded-2xl">
+    <div class="grid max-w-screen-xl px-4 py-8 mx-auto mt-16 lg:gap-8 xl:gap-0 lg:py-20 lg:grid-cols-12 shadow-xl rounded-2xl">
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img class="rounded-box w-100 h-60 object-cover ml-12" src="/assets/images/thumnail/thum1.jpg" alt="mockup">
+          <img class="rounded-box w-100 h-60 object-cover ml-12" src="<%= content.content_cover || 'content' %>" alt="mockup">
         </div>
         <div class="mr-auto place-self-center lg:col-span-7">
-            <div
-                class="badge badge-outline text-secondary hover:text-white hover:bg-primary hover:border-primary dark:text-white dark:hover:text-gray-800 h-7 mt-2  ">
-                TRUE STORY</p>
-            </div>
-            <div
-                class="badge badge-outline text-secondary hover:text-white hover:bg-primary hover:border-primary dark:text-white dark:hover:text-gray-800 h-7 mt-2">
-                ROAD-TRIP</p>
-            </div>
-            <div
-                class="badge badge-outline text-secondary hover:text-white hover:bg-primary hover:border-primary dark:text-white dark:hover:text-gray-800 h-7 mt-2">
-                NEPAL</p>
-            </div>
-            <div
-                class="badge badge-outline text-secondary hover:text-white hover:bg-primary hover:border-primary dark:text-white dark:hover:text-gray-800 h-7 mt-2">
-                BACKPACK</p>
-            </div>
-            <h1
-                class="max-w-2xl mt-3 mb-4 text-3xl font-bold tracking-tight leading-none md:text-4xl xl:text-4xl text-gray-800 dark:text-white">
-                BEST TRIP I'VE EVER SEEN</h1>
-            <p
-                class="w-80 md:w-5/6 max-w-2xl mb-6 font-light text-secondary lg:mb-8 md:text-md lg:text-md dark:text-gray-400">
-                From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their
-                payment stack.</p>
-
+          <div class="badge badge-outline text-secondary hover:text-white hover:bg-primary hover:border-primary dark:text-white dark:hover:text-gray-800 h-7 mt-2">
+            <%= content.content_category1 || 'Category 1' %>
+          </div>
+          <div class="badge badge-outline text-secondary hover:text-white hover:bg-primary hover:border-primary dark:text-white dark:hover:text-gray-800 h-7 mt-2">
+            <%= content.content_category2 || 'Category 2' %>
+          </div>
+          <!-- Add similar lines for content_category3 and content_category4 -->
+      
+          <h1 class="max-w-2xl mt-3 mb-4 text-3xl font-bold tracking-tight leading-none md:text-4xl xl:text-4xl text-gray-800 dark:text-white">
+            <%= content.content_title || 'No title available' %>
+          </h1>
+          <p class="w-80 md:w-5/6 max-w-2xl mb-6 font-light text-secondary lg:mb-8 md:text-md lg:text-md dark:text-gray-400">
+            <%= content.content_description || 'No description available' %>
+          </p>
         </div>
-
-    </div>
+      </div>
 
     <div
         class="container flex flex-col mx-auto px-8 sm:px-20 md:px-20 lg:px-60 sm:px-20 bg-transparent rounded-lg pt-8 my-10 mb-10">
@@ -122,14 +112,13 @@
         <div class="flex justify-between my-4 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm">START HERE</h6>
-                <img class="h-20 w-56 object-contain" src="/assets/images/icons/Location.png" alt="">
+                <a href="https://maps.app.goo.gl/<%= content.content_location1 || 'location1' %>" target="_blank">
+                    <img class="h-20 w-56 object-contain" src="/assets/images/icons/Location.png" alt="">
+                </a>
+                
             </div>
             <div class="full">
-                <div class="full dark:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat ipsum
-                    qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates explicabo,
-                    ipsam deserunt repudiandae, cumque dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat ipsum qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates
-                    explicabo, ipsam deserunt repudiandae, cumque dolor.</div>
+                <div class="full dark:text-white"><%= content.content_description || 'No description available' %></div>
                 <div class="full">
                     <img class="rounded-box w-full h-60 object-cover mx-auto mt-5"
                         src="/assets/images/thumnail/thum1.jpg" alt="mockup">
@@ -313,8 +302,8 @@
         </div>
 
         <div class="m-2"><a href="" class="text-white font-regular">HOME</a><span class="text-dark-grey-900"> ·
-            </span><a href="" class="text-white font-regular">ABOUT</a><span class="text-dark-grey-900"> · </span><a
-                href="" class="text-white font-regular">TERMS&CONDITIONS</a></div>
+        · </span><a href="/howto" class="text-white font-regular">FAQ</a><span class="text-dark-grey-900"> · </span><a
+                href="/tnc" class="text-white font-regular">TERMS&CONDITIONS</a></div>
         <div>
             <p class="dark:text-dark-grey-100">@ Jirapat & Pakin</p>
         </div>
