@@ -21,7 +21,7 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">jaily</span>
             </a>
             <div class="flex md:order-2">
-                <button type="button"
+                <a href="/write" type="button"
                     class="md:flex items-center text-white bg-primary hover:bg-primary focus:outline-none focus:ring-primary font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary">
                     <p class="sm1:hidden">WRITE</p>
                     <svg class="w-3 h-3 text-white dark:text-white ml-2 sm1:ml-0 sm1:w-4 sm1:h-4 " aria-hidden="true"
@@ -29,9 +29,21 @@
                         <path
                             d="M9.546.5a9.5 9.5 0 1 0 9.5 9.5 9.51 9.51 0 0 0-9.5-9.5ZM13.788 11h-3.242v3.242a1 1 0 1 1-2 0V11H5.304a1 1 0 0 1 0-2h3.242V5.758a1 1 0 0 1 2 0V9h3.242a1 1 0 1 1 0 2Z" />
                     </svg>
-                </button>
-                <button
-                    class="text-gray-500 hover:text-secondary focus:outline-none focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600 text-sm rounded-lg ml-4 mr-4">Login</button>
+                </a>
+                <% if (session && session.isLoggedIn && user) { %>
+                    <!-- Display username instead of "Login" -->
+                    <span class="text-primary font-black text-lg mx-6 my-2">
+                        <%= user %><a href="/logout" class="text-gray-500 font-bold ml-4 hover:text-primary focus:outline-none focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600 text-xs rounded-lg">
+                            Logout
+                        </a>
+                    </span>
+                <% } else { %>
+                    <!-- Display "Login" if user is not logged in -->
+                    <a href="/login"
+                        class="text-gray-500 font-bold m-4 hover:text-secondary focus:outline-none focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600 text-sm rounded-lg">
+                        Login
+                    </a>
+                <% } %>
                 <label class="swap swap-rotate mx-2">
                     <!-- this hidden checkbox controls the state -->
                     <input type="checkbox" id="dark-mode-toggle" />
@@ -65,20 +77,19 @@
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
                         <a href="/"
-                            class="block py-2 pl-3 pr-4 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0 md:dark:text-primary"
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:border-gray-700"
                             aria-current="page">Home</a>
                     </li>
                     <li>
                         <a href="/browse"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-secondary dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Browse</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:border-gray-700">Browse</a>
                     </li>
                     <li>
                         <a
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded cursor-not-allowed opacity-50 md:p-0 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-secondary dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-500 md:dark:hover:bg-transparent dark:border-gray-700 pointer-events-none">
-                        Collection
-                      </a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded cursor-not-allowed opacity-50 md:p-0 md:hover:bg-transparent md:hover:text-primary md:dark:hover:text-secondary dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-500 md:dark:hover:bg-transparent dark:border-gray-700 pointer-events-none">
+                            Collection
+                        </a>
                     </li>
-                </ul>
             </div>
 
         </div>
@@ -86,7 +97,8 @@
 
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto mt-16 lg:gap-8 xl:gap-0 lg:py-20 lg:grid-cols-12 shadow-xl rounded-2xl">
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <img class="rounded-box w-100 h-60 object-cover ml-12" src="<%= content.content_cover || 'content' %>" alt="mockup">
+            
+          <img class="rounded-box w-96 h-60 object-cover ml-12" src="<%= content.content_cover || 'content' %>" alt="">
         </div>
         <div class="mr-auto place-self-center lg:col-span-7">
           <div class="badge badge-outline text-secondary hover:text-white hover:bg-primary hover:border-primary dark:text-white dark:hover:text-gray-800 h-7 mt-2">
@@ -109,7 +121,7 @@
     <div
         class="container flex flex-col mx-auto px-8 sm:px-20 md:px-20 lg:px-60 sm:px-20 bg-transparent rounded-lg pt-8 my-10 mb-10">
         <!-- First section -->
-        <div class="flex justify-between my-4 ">
+        <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm">START HERE</h6>
                 <a href="https://maps.app.goo.gl/<%= content.content_location1 || 'location1' %>" target="_blank">
@@ -118,66 +130,107 @@
                 
             </div>
             <div class="full">
-                <div class="full dark:text-white"><%= content.content_description || 'No description available' %></div>
+                <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph1 || 'No description available' %></div>
                 <div class="full">
-                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-5"
-                        src="/assets/images/thumnail/thum1.jpg" alt="mockup">
+                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
+                        src="<%= content.content_image1 || '' %>" alt="mockup">
                 </div>
             </div>
         </div>
-
+        
+        <% if (content.content_paragraph2 !== null) { %>
         <!-- Second section -->
-        <div class="flex justify-between my-4 ">
+        <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt="">
+                <a href="https://maps.app.goo.gl/<%= content.content_location2 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
-                <div class="full dark:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat ipsum
-                    qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates explicabo,
-                    ipsam deserunt repudiandae, cumque dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat ipsum qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates
-                    explicabo, ipsam deserunt repudiandae, cumque dolor.</div>
+                <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph2 || '' %></div>
                 <div class="full">
-                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-5"
-                        src="/assets/images/thumnail/thum1.jpg" alt="mockup">
+                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
+                        src="<%= content.content_image2 || '' %>" alt="mockup">
                 </div>
             </div>
         </div>
-
+        <% } %>
+        <% if (content.content_paragraph3 !== null) { %>
         <!-- 3rd section -->
-        <div class="flex justify-between my-4 ">
+        <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt="">
+                <a href="https://maps.app.goo.gl/<%= content.content_location3 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
-                <div class="full dark:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat ipsum
-                    qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates explicabo,
-                    ipsam deserunt repudiandae, cumque dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat ipsum qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates
-                    explicabo, ipsam deserunt repudiandae, cumque dolor.</div>
+                <div class="full dark:text-white text-2xl w-full font-semibold"><%= content.content_paragraph3 || 'No description available' %></div>
                 <div class="full">
-                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-5"
-                        src="/assets/images/thumnail/thum1.jpg" alt="mockup">
+                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
+                        src="<%= content.content_image3 || '' %>" alt="mockup">
                 </div>
             </div>
         </div>
+        <% } %>
         <!-- 4th section -->
-        <div class="flex justify-between my-4 ">
+        <% if (content.content_paragraph4 !== null) { %>
+        <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <img class="h-20 w-56 object-contain" src="/assets/images/icons/Location.png" alt="">
+                <a href="https://maps.app.goo.gl/<%= content.content_location4 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
-                <div class="full dark:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat ipsum
-                    qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates explicabo,
-                    ipsam deserunt repudiandae, cumque dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat ipsum qui sunt veniam. Saepe repellat quidem quod quos id enim vel, autem nulla voluptates
-                    explicabo, ipsam deserunt repudiandae, cumque dolor.</div>
-
+                <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph4 || '' %></div>
+                <div class="full">
+                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
+                        src="<%= content.content_image4 || '' %>" alt="mockup">
+                </div>
             </div>
         </div>
+        <% } %>
+        <% if (content.content_paragraph5 !== null) { %>
+        <div class="flex justify-between my-10 ">
+            <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
+                <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
+                <a href="https://maps.app.goo.gl/<%= content.content_location5 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+            </div>
+            <div class="full">
+                <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph5 || '' %></div>
+                <div class="full">
+                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
+                        src="<%= content.content_image5 || '' %>" alt="mockup">
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <% if (content.content_paragraph6 !== null) { %>
+        <div class="flex justify-between my-10 ">
+            <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
+                <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
+                <a href="https://maps.app.goo.gl/<%= content.content_location6 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+            </div>
+            <div class="full">
+                <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph6 || '' %></div>
+                <div class="full">
+                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
+                        src="<%= content.content_image6 || '' %>" alt="">
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <% if (content.content_paragraph7 !== null) { %>
+        <div class="flex justify-between my-10 ">
+            <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
+                <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
+                <a href="https://maps.app.goo.gl/<%= content.content_location7 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+            </div>
+            <div class="full">
+                <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph7 || '' %></div>
+                <div class="full">
+                    <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
+                        src="<%= content.content_image7 || '' %>" alt="">
+                </div>
+            </div>
+        </div>
+        <% } %>
 
 
 
@@ -199,62 +252,26 @@
             <hr class="h-0.5 w-full my-2 bg-secondary border-0 dark:bg-primary">
         </div>
         <div class="flex flex-col md:flex-row justify-center mb-0 ">
+            <% if (stories && stories.length > 0) { %>
+                <% stories.forEach(story => { %>
             <div
-                class="card w-5/6 h-72 bg-transparent shadow-xl m-3 transform transition-transform duration-300 hover:scale-105 mx-auto sm:mx-3">
-                <div class="w-46 h-30 flex-shrink-0">
+                class="card w-5/6 bg-transparent shadow-xl m-3 transform transition-transform duration-300 hover:scale-105 mx-auto sm:mx-3">
+                <div class="w-46 h-60 flex-shrink-0">
                     <img class="h-full w-full object-cover rounded-t-lg md:rounded-none md:rounded-l-lg"
-                        src="/assets/images/thumnail/thum2.jpg" alt="" />
+                        src="<%= story.content_cover %>" alt="" />
                 </div>
                 <div class="card-body flex flex-col justify-between">
                     <div>
-                        <h2 class="card-title dark:text-white">
-                            Shoes!
+                        <h2 class="card-title text-sm dark:text-gray-400">
+                            <%= story.content_title %>
                         </h2>
-
-                    </div>
-                    <div class="card-actions justify-end dark:text-gray-400">
-                        2 days ago
                     </div>
                 </div>
             </div>
-
-            <div
-                class="card w-5/6 h-72 bg-transparent shadow-xl m-3 transform transition-transform duration-300 hover:scale-105 mx-auto sm:mx-3">
-                <div class="w-46 h-30 flex-shrink-0">
-                    <img class="h-full w-full object-cover rounded-t-lg md:rounded-none md:rounded-l-lg"
-                        src="/assets/images/thumnail/thum2.jpg" alt="" />
-                </div>
-                <div class="card-body flex flex-col justify-between">
-                    <div>
-                        <h2 class="card-title dark:text-white">
-                            Shoes!
-                        </h2>
-
-                    </div>
-                    <div class="card-actions justify-end dark:text-gray-400">
-                        2 days ago
-                    </div>
-                </div>
-            </div>
-
-            <div
-                class="card w-5/6 h-72 bg-transparent shadow-xl m-3 transform transition-transform duration-300 hover:scale-105 mx-auto sm:mx-3">
-                <div class="w-46 h-30 flex-shrink-0">
-                    <img class="h-full w-full object-cover rounded-t-lg md:rounded-none md:rounded-l-lg"
-                        src="/assets/images/thumnail/thum2.jpg" alt="" />
-                </div>
-                <div class="card-body flex flex-col justify-between">
-                    <div>
-                        <h2 class="card-title dark:text-white">
-                            Shoes!
-                        </h2>
-
-                    </div>
-                    <div class="card-actions justify-end dark:text-gray-400">
-                        2 days ago
-                    </div>
-                </div>
-            </div>
+            <% }); %>
+                <% } else { %>
+                    <p>No stories found.</p>
+                    <% } %>
 
 
 
@@ -290,24 +307,26 @@
 
     <div class="bg-secondary dark:bg-black w-full h-96 mt-36 flex flex-col justify-center items-center font-kdam">
         <div class="flex items-center">
-            <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
-                <img class="h-9 w-9" src="/assets/images/icons/instagram.png" alt="">
-            </div>
-            <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
-                <img class="h-9 w-9" src="/assets/images/icons/github.png" alt="">
-            </div>
-            <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
-                <img class="h-9 w-9" src="/assets/images/icons//linkedin.png" alt="">
-            </div>
+          <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
+            <a href="https://www.instagram.com/thurstiiiiiiiiiiiiiii/"><img class="h-9 w-9"
+                src="/assets/images/icons/instagram.png" alt=""></a>
+          </div>
+          <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
+            <a href="https://github.com/pakinphan"> <img class="h-9 w-9" src="/assets/images/icons/github.png" alt=""></a>
+          </div>
+          <div class="rounded-full h-16 w-16 bg-gray-800 flex items-center justify-center m-2">
+            <a href="https://www.linkedin.com/in/pakin-phanthawaorchai-48a123289/"><img class="h-9 w-9"
+                src="/assets/images/icons//linkedin.png" alt=""></a>
+          </div>
         </div>
-
-        <div class="m-2"><a href="" class="text-white font-regular">HOME</a><span class="text-dark-grey-900"> ·
-        · </span><a href="/howto" class="text-white font-regular">FAQ</a><span class="text-dark-grey-900"> · </span><a
-                href="/tnc" class="text-white font-regular">TERMS&CONDITIONS</a></div>
+    
+        <div class="m-2"><a href="/" class="text-white font-regular">HOME</a><span class="text-dark-grey-900">
+            · </span><a href="/howto" class="text-white font-regular">FAQ</a><span class="text-dark-grey-900"> · </span><a
+            href="/tnc" class="text-white font-regular">TERMS&CONDITIONS</a></div>
         <div>
-            <p class="dark:text-dark-grey-100">@ Jirapat & Pakin</p>
+          <p class="dark:text-dark-grey-100">@ Jirapat & Pakin</p>
         </div>
-    </div>
+      </div>
 
 
     <script>
