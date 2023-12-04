@@ -124,16 +124,16 @@
         <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm">START HERE</h6>
-                <a href="https://maps.app.goo.gl/<%= content.content_location1 || 'location1' %>" target="_blank">
+                <a href="<%= content.content_location1 || 'location1' %>" target="_blank">
                     <img class="h-20 w-56 object-contain" src="/assets/images/icons/Location.png" alt="">
                 </a>
                 
             </div>
             <div class="full">
-                <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph1 || 'No description available' %></div>
+                <div class="full dark:text-white text-2xl font-semibold w-full"><%= content.content_paragraph1 || 'No description available' %></div>
                 <div class="full">
                     <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
-                        src="<%= content.content_image1 || '' %>" alt="mockup">
+                        src="<%= content.content_image1 || '/assets/images/icons/Location.png' %>" alt="mockup">
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
         <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <a href="https://maps.app.goo.gl/<%= content.content_location2 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+                <a href="<%= content.content_location2 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
                 <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph2 || '' %></div>
@@ -159,7 +159,7 @@
         <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <a href="https://maps.app.goo.gl/<%= content.content_location3 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+                <a href="<%= content.content_location3 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
                 <div class="full dark:text-white text-2xl w-full font-semibold"><%= content.content_paragraph3 || 'No description available' %></div>
@@ -175,13 +175,13 @@
         <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <a href="https://maps.app.goo.gl/<%= content.content_location4 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+                <a href="<%= content.content_location4 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
                 <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph4 || '' %></div>
                 <div class="full">
                     <img class="rounded-box w-full h-60 object-cover mx-auto mt-12"
-                        src="<%= content.content_image4 || '' %>" alt="mockup">
+                        src="<%= content.content_image4 || '/assets/images/icons/Location.png' %>" alt="">
                 </div>
             </div>
         </div>
@@ -190,7 +190,7 @@
         <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <a href="https://maps.app.goo.gl/<%= content.content_location5 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+                <a href="<%= content.content_location5 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
                 <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph5 || '' %></div>
@@ -205,7 +205,7 @@
         <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <a href="https://maps.app.goo.gl/<%= content.content_location6 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+                <a href="<%= content.content_location6 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
                 <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph6 || '' %></div>
@@ -220,7 +220,7 @@
         <div class="flex justify-between my-10 ">
             <div class="hidden sm:flex sm:flex-col m-5 mr-20 items-center">
                 <h6 class="w-24 font-bold text-center text-primary text-sm"></h6>
-                <a href="https://maps.app.goo.gl/<%= content.content_location7 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
+                <a href="<%= content.content_location7 || 'location1' %>"><img class="h-20 w-56 object-contain" src="/assets/images/icons/Location3.png" alt=""></a>
             </div>
             <div class="full">
                 <div class="full dark:text-white text-2xl font-semibold"><%= content.content_paragraph7 || '' %></div>
