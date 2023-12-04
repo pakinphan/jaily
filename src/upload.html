@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./upload.js"></script>
+</head>
+<body>
+    อัพโหลดรูปภาพ
+    <form>
+      <input type="file" name="imageFile"/>
+      <input type="button" value="upload" onclick=save();google.script.run.uploadImage(this.parentNode)>
+    </form>
+    <script>
+    function save(){
+    Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'อัพโหลดรูปเรียบร้อยแล้ว',
+  showConfirmButton: false,
+  timer: 2000
+})
+}
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </body>
+
+</html>
