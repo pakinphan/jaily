@@ -5,32 +5,53 @@ const bcrypt = require('bcryptjs');
 var router = express.Router();
 
 const dbConnection = require('./database');
-const { body, validationResult } = require('express-validator');
+const {body, validationResult} = require('express-validator');
 const session = require("express-session");
 
 
 const app = express();
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false}))
 
 app.use('/assets', express.static('assets'))
 
 app.get('/register', (req, res) => {
     // Render the "register.ejs" view
     res.render('register');
-});
-app.get('/login', (req, res) => {
+  });
+  app.get('/login', (req, res) => {
 
     res.render('login');
-});
+  });
 
+  app.get('/index', (req, res) => {
 
-app.get('/error', (req, res) => {
+    res.render('index');
+  });
+  app.get('/write', (req, res) => {
+
+    res.render('write_page');
+  });
+  app.get('/browse', (req, res) => {
+
+    res.render('browse');
+  });
+  app.get('/error', (req, res) => {
 
     res.render('error');
-});
+  });
+  app.get('/howto', (req, res) => {
 
+    res.render('howto');
+  });
 
+//   app.get('/read', (req, res) => {
 
+//     res.render('read_page');
+//   });
+  app.get('/tnc', (req, res) => {
+
+    res.render('tnc');
+  });
 
 
 
@@ -38,293 +59,652 @@ app.get('/error', (req, res) => {
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
-app.use(
+  
+  app.use(
     cookieSession({
-        name: 'session',
-        keys: ['key1', 'key2'],
-        maxAge: 3600 * 1000 //1hour
+      name: 'session',
+      keys: ['key1','key2'],
+      maxAge: 3600*1000 //1hour
     })
-);
+  );
 
-app.get("/", async (req, res) => {
-    try {
-        const [stories] = await dbConnection.execute("SELECT * FROM contents_new LIMIT 4;");
-        const [query] = await dbConnection.execute('SELECT * FROM contents_new ORDER BY content_id DESC LIMIT 4');
-        const [result_story] = await dbConnection.execute("SELECT COUNT(*) AS totalRows FROM contents_new;");
-        const totalRows = result_story[0].totalRows;
-        const [result_reader] = await dbConnection.execute("SELECT COUNT(*) AS totalRows_r FROM users;");
-        const totalRows_r = result_reader[0].totalRows_r;
+// const user = {
+//     firstName: 'John',
+//     lastName: 'Doe'
 
-        // Fetch user information based on the session username
-        const user = req.session?.user_username
-            ? await dbConnection.execute("SELECT * FROM users WHERE user_username = ?;", [req.session.user_username])
-            : null;
-        console.log(stories)
-        // Pass the user information to the EJS file if needed
-        res.render('index', {
-            query: query,
-            stories: stories,
-            user: req.session.user_username, // Check if user is not null and has data
-            session: req.session,
-            totalRows: totalRows,
-            totalRows_r: totalRows_r,
-        });
+// }
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('error', { message: 'Internal Server Error' });
-    }
-});
+// app.get('/', (req, res) =>{
+//     console.log(user)
+//     res.render('index', {
+//         user : user
+//     })
+// })
 
-app.get("/browse", async (req, res) => {
+  app.get("/", async (req, res) => {
     try {
         const [stories] = await dbConnection.execute("SELECT * FROM contents_new;");
-
-        // Fetch user information based on the session username
-        const user = req.session?.user_username
-            ? await dbConnection.execute("SELECT * FROM users WHERE user_username = ?;", [req.session.user_username])
-            : null;
         console.log(stories)
-        // Pass the user information to the EJS file if needed
-        res.render('browse', {
-            stories: stories,
-            user: req.session.user_username, // Check if user is not null and has data
-            session: req.session,
-
-        });
-
+      res.render('index', { 
+        stories :stories 
+        }); 
     } catch (error) {
-        console.error(error);
-        res.status(500).render('error', { message: 'Internal Server Error' });
+      console.error(error);
+      res.status(500).render('error', { message: 'Internal Server Error' });
     }
-});
-
-app.get("/write", async (req, res) => {
+  });
+  
+  app.get('/read/:id', async (req, res) => {
     try {
-        const [stories] = await dbConnection.execute("SELECT * FROM contents_new;");
-
-        // Fetch user information based on the session username
-        const user = req.session?.user_username
-            ? await dbConnection.execute("SELECT * FROM users WHERE user_username = ?;", [req.session.user_username])
-            : null;
-        console.log(stories)
-        // Pass the user information to the EJS file if needed
-        res.render('write_page', {
-            stories: stories,
-            user: req.session.user_username, // Check if user is not null and has data
-            session: req.session,
-
-        });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('error', { message: 'Internal Server Error' });
-    }
-});
-
-app.get("/howto", async (req, res) => {
-    try {
-        const [stories] = await dbConnection.execute("SELECT * FROM contents_new;");
-
-        // Fetch user information based on the session username
-        const user = req.session?.user_username
-            ? await dbConnection.execute("SELECT * FROM users WHERE user_username = ?;", [req.session.user_username])
-            : null;
-        console.log(stories)
-        // Pass the user information to the EJS file if needed
-        res.render('howto', {
-            stories: stories,
-            user: req.session.user_username, // Check if user is not null and has data
-            session: req.session,
-
-        });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('error', { message: 'Internal Server Error' });
-    }
-});
-
-
-app.get("/tnc", async (req, res) => {
-    try {
-        const [stories] = await dbConnection.execute("SELECT * FROM contents_new;");
-
-        // Fetch user information based on the session username
-        const user = req.session?.user_username
-            ? await dbConnection.execute("SELECT * FROM users WHERE user_username = ?;", [req.session.user_username])
-            : null;
-        console.log(stories)
-        // Pass the user information to the EJS file if needed
-        res.render('tnc', {
-            stories: stories,
-            user: req.session.user_username, // Check if user is not null and has data
-            session: req.session,
-
-        });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('error', { message: 'Internal Server Error' });
-    }
-});
-
-
-
-
-app.get('/read/:id', async (req, res) => {
-    try {
-        // Fetch the content from the database based on the ID
-        const contentId = req.params.id;
-        const [content] = await dbConnection.execute('SELECT * FROM contents_new WHERE content_id = ?', [contentId]);
-        const [stories] = await dbConnection.execute("SELECT * FROM contents_new LIMIT 4;");
-        const user = req.session?.user_username
-            ? await dbConnection.execute("SELECT * FROM users WHERE user_username = ?;", [req.session.user_username])
-            : null;
-        console.log(content)
-        res.render('read_page', {
-            content: content[0],
-            stories: stories, user: req.session.user_username, // Check if user is not null and has data
-            session: req.session,
-        });
-
+      // Fetch the content from the database based on the ID
+      const contentId = req.params.id;
+      const [content] = await dbConnection.execute('SELECT * FROM contents_new WHERE content_id = ?', [contentId]);
+      console.log(content)
+      res.render('read_page', { content: content[0] });
+      
     } catch (err) {
-        console.error(err);
-        return res.status(500).send({ error: 'Internal Server Error' });
+      console.error(err);
+      return res.status(500).send({ error: 'Internal Server Error' });
     }
-});
+  });
 
-app.post("/save-content", async (req, res) => {
-    try {
-        // Extract data from the form submission
-        const { content_cover, content_title, content_description, content_category1, content_category2, content_location1, content_paragraph1, content_image1, content_location2, content_paragraph2, content_image2, content_location3, content_paragraph3, content_image3, content_location4, content_paragraph4, content_image4, content_location5, content_paragraph5, content_image5, content_location6, content_paragraph6, content_image6, content_location7, content_paragraph7, content_image7, content_location8, content_paragraph8, content_image8, content_location9, content_paragraph9, content_image9, content_location10, content_paragraph10, content_image10 } = req.body;
-        console.log({ content_cover, content_title, content_description, content_category1, content_category2, content_location1, content_paragraph1, content_image1, content_location2, content_paragraph2, content_image2, content_location3, content_paragraph3, content_image3 })
-        // Perform validation if needed
+//   router.post('/save-content', async (req, res) => {
+//     try {
+//       // Extract data from the request body
+//       const { content_title, content_cover, content_description, content_image } = req.body;
+  
+//       // Perform the insertion query
+//       const [result] = await dbConnection.execute(
+//         'INSERT INTO contents_new (content_title, content_cover, content_description, content_image) VALUES (?, ?, ?, ?)',
+//         [content_title, content_cover, content_description, content_image]
+//       );
+  
+//       // Check if the insertion was successful
+//       if (result.affectedRows > 0) {
+//         // Data inserted successfully
+//         res.status(201).json({ message: 'Content saved successfully!' });
+//       } else {
+//         // No rows affected, insertion failed
+//         res.status(500).json({ error: 'Failed to save content.' });
+//       }
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ error: 'Internal Server Error' });
+//     }
+//   });
 
-        // Insert data into the database
-        const result = await dbConnection.query(
-            "INSERT INTO contents_new (content_cover, content_title, content_description, content_category1, content_category2, content_location1, content_paragraph1, content_image1, content_location2, content_paragraph2, content_image2, content_location3, content_paragraph3, content_image3, content_location4, content_paragraph4, content_image4, content_location5, content_paragraph5, content_image5, content_location6, content_paragraph6, content_image6, content_location7, content_paragraph7, content_image7, content_location8, content_paragraph8, content_image8, content_location9, content_paragraph9, content_image9, content_location10, content_paragraph10, content_image10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [content_cover, content_title, content_description, content_category1, content_category2, content_location1, content_paragraph1, content_image1, content_location2, content_paragraph2, content_image2, content_location3, content_paragraph3, content_image3, content_location4, content_paragraph4, content_image4, content_location5, content_paragraph5, content_image5, content_location6, content_paragraph6, content_image6, content_location7, content_paragraph7, content_image7, content_location8, content_paragraph8, content_image8, content_location9, content_paragraph9, content_image9, content_location10, content_paragraph10, content_image10]
-        );
-        
-        console.log({
-            content_cover, content_title, content_description, 
-            content_category1, content_category2, 
-            content_location1, content_paragraph1, content_image1, 
-            content_location2, content_paragraph2, content_image2, 
-            content_location3, content_paragraph3, content_image3
-          });
-        res.redirect("/");
-        // Check the affectedRows to verify if the data was inserted successfully
-        if (result.affectedRows > 0) {
-            // Data inserted successfully
-            res.redirect("/"); // Redirect to the index page or any other page
-        } else {
-            // Data insertion failed
-            res.render("error", { message: "Failed to save content" });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).render("error", { message: "Internal Server Error" });
-    }
-});
+// app.get('/api/read', async (req, res) => {
+//     try {
+//       const results = await dbConnection.execute(`SELECT user_username FROM users WHERE user_username = 'jinju'`);
+//       const username = results[0][0].user_username;
+  
+//       res.status(200).render('index', { result: { user_username: username } });
 
+//     } catch (err) {
+//       console.error(err);
+//       return res.status(500).send({ error: 'Internal Server Error' });
+//     }
+//   });
+  
 
-
-module.exports = router;
-
+//   app.get("/api/list?", async (req, res) => {
+//     console.log(req.query.page)
+//   });
+  
+  module.exports = router;
+  
 const ifNotLoggedIn = (req, res, next) => {
-    if (!req.session.isLoggedIn) {
+if (!req.session.isLoggedIn) {
 
         return res.render('login');
-    }
-    next();
+}
+next();
 }
 
 const ifLoggedIn = (req, res, next) => {
     if (!req.session.isLoggedIn) {
         return res.redirect('/index');
     }
-    next();
+    next(); 
 }
+
+
+// app.get('/', ifNotLoggedIn, (req,res, next) =>{
+//     dbConnection.execute("SELECT user_username FROM user_info WHERE user_username =", [req, session.userID]).then(([row]) => {res.render('index', {
+//         name: row[0].name
+
+//     })})
+// })
+
+
+
+
+
+app.get("/", (req, res) => {
+    try {
+      // Query to retrieve data from your MySQL database
+      dbConnection.query("SELECT * FROM story_info", (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).render("error", { error: "Internal Server Error" });
+        }
+  
+        // Render EJS template and pass data to it
+        res.render("index", { stories: result });
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).render("error", { error: "Internal Server Error" });
+    }
+  });
+// app.use((req, res, next) => {
+//     // Create an error object
+//     const err = new Error('Not Found');
+//     err.status = 404;
+  
+//     // Forward the error to the next middleware
+//     next(err);
+//   });
+  
+//   // Middleware to render the custom 404 page
+//   app.use((err, req, res, next) => {
+//     // Check if the error status is 404
+//     if (err.status === 404) {
+//       // Render the custom 404 page
+//       return res.status(404).render('404error.ejs');
+//     }
+  
+//     // For other errors, you can handle them accordingly
+//     // For example, render an error page or send a JSON response
+//     res.status(err.status || 500);
+//     res.send('Internal Server Error');
+//   });
+// app.post('/register', (req, res) => {
+//     const { user_username, user_email, user_password } = req.body;
+//     const sql = 'INSERT INTO users (user_username, user_email, user_password) VALUES (?, ?, ?)';
+//     const values = [user_username, user_email, user_password];
+  
+//     dbConnection.query(sql, values, (err, result) => {
+//       if (err) throw err;   
+//       console.log('User registered:', result);
+//       res.send('Registration successful!');
+//     });
+//   });
+
+
+
 
 app.post('/register', async (req, res) => {
     try {
-        // Check if the email already exists
-        const emailExists = await dbConnection.execute('SELECT * FROM users WHERE user_email = ?', [req.body.user_email]);
-
-        if (emailExists[0].length > 0) {
-            return res.json({
-                "error": "Email is already in use"
-            });
-        }
-
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(req.body.user_password, 12);
-
-        // Insert the user into the database
-        const result = await dbConnection.execute('INSERT INTO users (user_username, user_email, user_password, user_birthday, user_phonenumber) VALUES (?, ?, ?, ?, ?)', [req.body.user_username, req.body.user_email, hashedPassword, req.body.user_birthday, req.body.user_phonenumber]);
-
-        res.render('login');
-    } catch (error) {
-        console.error(error);
-        res.json({
-            "error": "Registration failed"
+      // Check if the email already exists
+      const emailExists = await dbConnection.execute('SELECT * FROM users WHERE user_email = ?', [req.body.user_email]);
+  
+      if (emailExists[0].length > 0) {
+        return res.json({
+          "error": "Email is already in use"
         });
-    }
-});
-
-
-
-
-app.post('/login', async (req, res) => {
-    try {
-        const { user_username, user_password } = req.body;
-
-        // Check if the user with the given username exists
-        const [user] = await dbConnection.execute('SELECT user_username, user_password FROM users WHERE user_username = ?', [user_username]);
-
-        if (user.length === 0) {
-            // Invalid username
-            return res.render('login', { error: 'Invalid username or password' });
-        }
-
-        // Compare the provided password with the hashed password from the database
-        const passwordMatch = await bcrypt.compare(user_password, user[0].user_password);
-
-        if (passwordMatch) {
-            // Set the user as logged in in the session
-            req.session.isLoggedIn = true;
-            req.session.user_username = user[0].user_username; // <-- Set the correct session key
-
-            // Redirect to /index after successful login
-            return res.redirect('/');
-        } else {
-            // Invalid password
-            return res.render('login', { error: 'Invalid username or password' });
-        }
+      }
+  
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(req.body.user_password, 12);
+  
+      // Insert the user into the database
+      const result = await dbConnection.execute('INSERT INTO users (user_username, user_email, user_password, user_birthday, user_phonenumber) VALUES (?, ?, ?, ?, ?)', [req.body.user_username, req.body.user_email, hashedPassword, req.body.user_birthday, req.body.user_phonenumber]);
+  
+      res.render('login');
     } catch (error) {
-        console.error(error);
-        // Redirect to 404error.ejs in case of an error
-        res.status(404).render('404error');
+      console.error(error);
+      res.json({
+        "error": "Registration failed"
+      });
     }
-});
+  });
+  
+
+
+
+  app.post('/login', async (req, res) => {
+    try {
+      const { user_username, user_password } = req.body;
+  
+      // Check if the user with the given username exists
+      const [user] = await dbConnection.execute('SELECT user_username, user_password FROM users WHERE user_username = ?', [user_username]);
+  
+      if (user.length === 0) {
+        // Invalid username
+        return res.render('login', { error: 'Invalid username or password' });
+      }
+  
+      // Compare the provided password with the hashed password from the database
+      const passwordMatch = await bcrypt.compare(user_password, user[0].user_password);
+  
+      if (passwordMatch) {
+        // Set the user as logged in in the session
+        req.session.isLoggedIn = true;
+        req.session.userID = user[0].user_username;
+  
+        // Redirect to /index after successful login
+        return res.redirect('/');
+      } else {
+        // Invalid password
+        return res.render('login', { error: 'Invalid username or password' });
+      }
+    } catch (error) {
+      console.error(error);
+      // Redirect to 404error.ejs in case of an error
+      res.status(404).render('404error');
+    }
+  });
+  
+  
+  const port = process.env.PORT || 3000;
+
+  app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
+
+//login Page
+// app.post('/', ifLoggedIn, [
+//     body('user_username').custom((value) => {
+//         return dbConnection.execute('SELECT user_username FROM users where user_username = ?', [value])
+//         .then(([rows]) => {
+//             if (rows.length == 1){
+//                 return true;
+//             }
+//             return Promise.reject("Invalid Username!")
+//         });
+//     })
+// ])
+
+
+
+//      register
+//  app.post('/register', [
+//     body('user_email', 'Invalid Email Address!').isEmail().custom((value) => {
+//         return dbConnection.execute('SELECT user_email FROM user_info WHERE user_email = ?', [value]).then(([rows]) => {
+//             if (row.length > 0) {
+//                 return Promise.reject('This email already in use!');
+//             }
+//             return true;
+//          })
+//      }),
+//      body('user_username', 'User is empty!').trim().not().isEmpty(),
+//      body('user_pass', 'The password must be of minimum length 6 charactor').trim().isLength({ min: 6 }),
+//      //end of post data validation
+//  ],
+//  (req, res, next) => {
+//      const validation_result = validationResult(req);
+//      const { user_username, user_password, user_email} = req.body;
+
+//      if (validation_result.isEmpty()) {
+//          bcrypt.hash(user_password, 12).then((hash_password) => {
+//              dbConnection.execute('INSERT INTO user_info (user_username, user_email, user_password) VALUES(?, ?, ?)', [user_username, user_email, hash_password])
+//              .then(result => {
+//                  res.send('Your account has been create successfully, Now you can <a href="/"> Login </a>');
+//              }).catch(err => {
+//                  if (err) throw err;
+//              })
+//      }).catch(err => {
+//              if (err) throw err;
+//          })
+//      }else {
+//          let allErrors = validation_result.errors.map((error) => {
+//              return error.msg;
+//          })
+//          res.render('register', {
+//              register_error: allErrors,
+//              old_data: req.body
+//          })
+//      }
+//  }
+//  )
 
 
 
 
 
-app.get('/logout', (req, res) => {
-    req.session = null;
-    res.redirect('/login');
-});
 
 
 
-const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
 
+
+
+// console.log("test")
+
+
+
+
+// //   app.use(express.json());
+
+
+
+
+
+
+  
+//   app.get("/login", function (request, response) {
+//     response.sendFile(path.join(__dirname + "/login.html"));
+//   });
+  
+//   app.post("/auth", function (request, response) {
+//     var username = request.body.username;
+//     var password = request.body.password;
+  
+//     if (username && password) {
+//       connection.query(
+//         "SELECT * FROM user_info WHERE user_username = ? AND user_password = ? ",
+//         [username, password],
+//         function (error, results, fields) {
+//           //console.log(username);
+//           if (results.length > 0) {
+//             request.session.loggedin = true;
+//             request.session.username = username;
+//             //response.redirect("/home");
+//             response.redirect("/webboard");
+//           } else {
+//             response.send("Incorrect Username and/or Password");
+//           }
+//           response.end();
+//         }
+//       );
+//     } else {
+//       response.send("Please enter Username and Password");
+//       response.end();
+//     }
+//   });
+  
+//   app.get("/webboard", (req, res) => {
+//     if (req.session.loggedin)
+//       connection.query("SELECT * FROM user_info", (err, result) => {
+//         res.render("index.ejs", {
+//           posts: result,
+//         });
+//         console.log(result);
+//       });
+//     else
+//       res.send("You must login First!!!");
+//     console.log("You must login First!!!");
+//     // res.end();
+//   });
+  
+//   app.get("/signout", function (request, request) {
+//     request.session.destroy(function (err) {
+//       response.send("Signout ready!");
+//       response.end();
+//     })
+//   })
+  
+//   app.get("/add", (req, res) => {
+//     res.render("add.ejs");
+//   })
+  
+//   app.post("/add", (req, res) => {
+//     const username = req.body.username;
+//     const password = req.body.password;
+//     const email = req.body.email;
+//     const post = {
+//       user_username: username, //ไม่แน่ใจ
+//       user_password: password,
+//       user_email: email
+//     };
+//     if (req.session.loggedin)
+//       connection.query("INSERT INTO user_info SET ?", post, (err) => {
+//         console.log("Data Inserted");
+//         return res.redirect("/webboard");
+//       });
+//     else res.send("You must to login First!!!");
+//     console.log("You must to login First!!!");
+//     //   res.end();
+//   });
+  
+  
+//   app.get("/edit/:id", (req, res) => {
+//     const edit_postID = req.params.id;
+  
+//     connection.query(
+//       "SELECT * FROM user_info WHERE id=?",
+//       [edit_postID],
+//       (err, results) => {
+//         if (results) {
+//           res.render("edit", {
+//             post: results[0],
+//           });
+//         }
+//       }
+//     );
+//   });
+  
+//   app.post("/edit/:id", (req, res) => {
+//     const update_username = req.body.username;
+//     const update_password = req.body.password;
+//     const update_email = req.body.email;
+//     const id = req.params.id;
+//     connection.query(
+//       "UPDATE user_info SET user_username = ?,user_password = ? ,user_email = ? WHERE id = ?",
+//       [update_username, update_password, update_email, id],
+//       (err, results) => {
+//         if (results.changedRows === 1) {
+//           console.log("Post Updated");
+//         }
+//         return res.redirect("/webboard");
+//       }
+//     );
+//   });
+  
+//   app.get("/delete/:id", (req, res) => {
+//     connection.query(
+//       "DELETE FROM user_info WHERE id = ?",
+//       [req.params.id],
+//       (err, results) => {
+//         return res.redirect("/webboard");
+//       }
+//     );
+//   });
+  
+
+  
+  
+//   // week2 for encypt
+  
+//   app.get("/signup", (req,res) => {
+//     res.render("signup.ejs");
+//   });
+  
+//   app.post("/signup", (req,res) => {
+//     const newuser_username = req.body.user_username;
+//     const newuser_email = req.body.user_email;
+//     const newuser_password = req.body.user_password;
+  
+//     console.log(newuser_username);
+  
+//     // const bcrypt = require('bcrypt');
+  
+//     // Assuming newuser_username, newuser_password, and newuser_email are already defined.
+    
+//     if (newuser_username && newuser_password) {
+//       bcrypt.genSalt(10, function(err, salt) {
+//         console.log(salt);
+//         console.log(newuser_username, newuser_email, newuser_password);
+//         bcrypt.hash(newuser_password, salt, function(err, hash) {  // Fixed typo here
+//           connection.query(
+//             "INSERT INTO user_info SET user_username = ?, user_password = ?, user_email = ?",
+//             [newuser_username, hash, newuser_email],  // Fixed variable name here
+//             function(err) {
+//               if (err) {
+//                 console.error(err);  // Print the actual error message
+//               }
+    
+//               req.session.loggedin = true;
+//               req.session.userID = newuser_username;
+    
+//               res.redirect("/checklogin");
+//             }
+//           );
+//         });
+//       });
+//     } else {
+//       res.redirect('/');
+//     }
+//   });
+  
+//   //checkemail
+//   app.post("/checkLogin", function(req,res) {
+//     var newuser_username     = req.body.user_username;
+//    var newuser_password   = req.body.user_password;
+  
+//       if (newuser_username && newuser_password) {
+//           connection.query(
+//               "SELECT * FROM user_info WHERE user_username = ?", newuser_username,
+//               function(err, results) {
+//                   if (err) { console.error(); }
+  
+//                   if (results.length > 0) {
+//                       bcrypt.compare(newuser_password, results[0].user_password, function(err, resultt) {
+//                           if (resultt == true) {
+//                               req.session.loggedin    = true;
+//                               req.session.userID      = results[0].user_username;
+                              
+//                               console.log(newuser_password, results[0].user_password);
+//                               console.log(resultt);
+//                               res.redirect("/webboard");
+//                           }
+//                           else {
+//                               res.render("index_error", {
+//                                   message : "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+//                                   user_id  : newuser_username
+//                               });
+//                           }
+//                       });
+//                   } else {
+//                       res.render("index_error", {
+//                           message     : "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง<br>(หากยังไม่เคยใช้งานเว็บไซต์นี้ ให้สมัครสมาชิกก่อน)",
+//                           user_id     : newuser_username
+//                       });
+//                   }
+//               }
+//           );
+//    } else {
+//           res.render("index_error", {
+//               message : "โปรดใส่ข้อมูลให้ครบถ้วน!!",
+//               user_id  : newuser_username
+//           });
+//    }
+//   });
+  
+//   app.get("/checkLogin", function(req,res) {
+//     res.sendFile(path.join(__dirname + "/login_auth.html"));
+//   });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+//   // Send Email
+//   /* ---------- config สำหรับ gmail ---------- */
+//   function sendmail(toemail, subject, html) {
+//     const transporter = nodemailer.createTransport({
+//         host: 'smtp.gmail.com',
+//         service: 'gmail',  
+//         auth: {
+//             user: 'partykung2306@gmail.com',   // your email
+//             //pass: 'Sittichai7749!'  // your email password
+//              pass: 'coazbwcmapfayzex'    // for app password
+//         }
+//     });
+    
+//     // send mail with defined transport object
+//     let mailOptions = {
+//         from: '"COSCI - Test mail" <partykung2306@gmail.com>',  // sender address
+//         to: toemail,    // list of receivers
+//         subject: subject,   // Subject line
+//         // text: textMail
+//         html: html     // html mail body
+//     };
+  
+//     // send mail with defined transport object
+//     transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//             console.log(error);
+//             res.send('เกิดข้อผิดพลาด ไม่สามารถส่งอีเมลได้ โปรดลองใหม่ภายหลัง');
+//         }
+//         else {
+//             // console.log('INFO EMAIL:', info);
+//             console.log("send email successful");
+//         }
+//     });
+//   }
+  
+  
+//   //checkforget
+//   app.get("/checkForget", function(request, response) {
+//     response.sendFile(path.join(__dirname + "/login_forget.html"));
+//   });
+  
+//   app.post("/checkForget", function(req, res) {
+//     var newuser_username    = req.body.user_username;
+//     console.log(newuser_username);
+  
+//     if (newuser_username) {
+//         connection.query(
+//             "SELECT * FROM user_info WHERE user_username = ?", newuser_username, 
+//             function(errM, rowM) {
+//                 if (errM) {console.error();}
+  
+//                 if (rowM.length > 0) {
+//                     // ส่งอีเมล
+//                     let randomPass = Math.random().toString(36).substring(2, 10);
+  
+//                     var emails = rowM[0].user_email;
+//                     var subject = "รหัสผ่านของคุณมีการเปลี่ยนแปลง";
+//                     var html = "สวัสดี คุณ " + rowM[0].user_username + "<br><br>" +
+//                         "&nbsp;&nbsp;รหัสผ่านเว็บไซต์ NodeLoginX ของคุณมีการเปลี่ยนแปลงตามที่คุณร้องขอ<br>" + 
+//                         "รหัสผ่านใหม่ของคุณ คือ &nbsp;" + randomPass + "<br>" +
+//                         "ให้ใช้รหัสผ่านนี้ในการเข้าสู่ระบบ และคุณสามารถเปลี่ยนแปลงรหัสผ่านของคุณได้หลังจากเข้าสู่ระบบแล้ว" + "<br><br><br>ขอบคุณ<br>NodeLoginX";
+//                     sendmail(emails, subject, html);
+//                     console.log(emails);
+  
+//                     // Update Password
+//                     bcrypt.genSalt(10, function(err, salt) {
+//                         bcrypt.hash(randomPass, salt, function(err, hash) {
+//                             connection.query(
+//                                 "UPDATE user_info SET user_password = ? WHERE user_username = ?", [hash, newuser_username],
+//                                 function(err) {
+//                                     if (err) {console.error();}
+  
+//                                     const textMSG = 'เราจะส่งรหัสผ่านไปให้คุณทางอีเมล "' + rowM[0].user_email + '"<br>โปรดตรวจสอบรหัสใหม่ที่อีเมลของคุณ';
+//                                     res.render("index_forgotpass", {
+//                                         message     : textMSG,
+//                                         user_name   : newuser_username,
+//                                         vhf1        : 'hidden',
+//                                         vhf2        : 'visible'
+//                                     });
+//                                 }
+//                             );
+//                         });
+//                     });
+//                 }
+//                 else {
+//                     res.render("index_forgotpass", {
+//                         message     : "ขออภัย..ไม่พบข้อมูล<br>คุณอาจยังไม่เป็นสมาชิก",
+//                         user_name     : newuser_username,
+//                         vhf1        : 'visible',
+//                         vhf2        : 'hidden'
+//                     });
+//                 }
+//             }
+//         );
+//     } else {
+//         res.render("index_forgotpass", {
+//             message     : "โปรดใส่ข้อมูลก่อน!!",
+//             vhf1        : 'visible',
+//             vhf2        : 'hidden'
+//         });
+//     }
+//   });
 
 
